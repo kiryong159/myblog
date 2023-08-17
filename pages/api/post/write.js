@@ -1,5 +1,6 @@
 import { connectDB } from "@/util/database";
 
+// 글쓰기 api
 export default async function Writehandler(req, res) {
   req.body = JSON.parse(req.body);
   const db = (await connectDB).db("blog");

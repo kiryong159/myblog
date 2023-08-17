@@ -19,3 +19,5 @@ export default function Home() {
 // 글쓰기 공백차단 post요청체크
 
 //edit같은거에 애니메이션 넣어보기
+
+//글목록 페이지 제작해보기?

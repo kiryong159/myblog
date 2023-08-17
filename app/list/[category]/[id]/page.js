@@ -2,6 +2,8 @@ import { connectDB } from "@/util/database";
 import formattedDate from "@/util/formatDate";
 import { ObjectId } from "mongodb";
 import Backbtn from "./backBtn";
+import Comment from "./Comment";
+import PostDeleteBtn from "./Delete";
 import PostEdit from "./Edit";
 
 // 글 내용 보는 페이지
@@ -23,12 +25,16 @@ export default async function PostDetail(prop) {
         <Backbtn />
         <div className="flex justify-end space-x-3 items-center">
           <PostEdit result={result} category={category} />
+          <PostDeleteBtn postId={postId} />
           <span>{result.category} </span>
           <span>{formattedDate(result.postAt.toString())}</span>
         </div>
       </div>
       <h1 className="p-3 text-center font-bold text-2xl">{result.title}</h1>
-      <div className="p-3 flex">{result.content}</div>
+      <div className="p-3 flex">
+        <pre>{result.content}</pre>
+      </div>
+      <Comment postId={postId} />
     </div>
   );
 }
