@@ -18,6 +18,12 @@ export default function Home() {
 
 // 글쓰기 공백차단 post요청체크
 
+//글삭제시 댓글삭제
+
 //edit같은거에 애니메이션 넣어보기
 
-//글목록 페이지 제작해보기?
+//글목록 페이지 제작해보기? - 보류
+// 페이지 만들기 / list.slice(offset*index,offset*index+offset)
+// state에 math.ceil(list.length/offset)  page 최대갯수
+
+//댓글 수정,삭제시 세션 주인 확인

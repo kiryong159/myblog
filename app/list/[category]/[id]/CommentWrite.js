@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 export default function CommentWrite({ postId }) {
-  console.log(postId);
   const { register, handleSubmit, formState, reset } = useForm();
   const router = useRouter();
   const onValid = async (data) => {

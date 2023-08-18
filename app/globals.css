@@ -126,3 +126,22 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+/* 테일윈드에 className에  css이름을 작명해주고 여기다 쓰면됨*/
+.commentScrollBar {
+  overflow-y: scroll;
+}
+/* 스크롤바 넓이 조정 */
+.commentScrollBar::-webkit-scrollbar {
+  width: 10px;
+}
+/* 스크롤바 잡는부분 색상 */
+.commentScrollBar::-webkit-scrollbar-thumb {
+  background-color: #7bed9f;
+  border-radius: 10px;
+}
+/* 스크롤바 남는부분 색상 */
+.commentScrollBar::-webkit-scrollbar-track {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 10px;
+}
