@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { AnimatePresence, motion } from "framer-motion";
 
 //글 수정 페이지
 export default function PostEdit({ result, category }) {
@@ -35,6 +36,12 @@ export default function PostEdit({ result, category }) {
       });
   };
 
+  const editVars = {
+    initial: { opacity: 0, scale: 0, y: -250, x: 130 },
+    visible: { opacity: 1, scale: 1, y: 0, x: 0 },
+    exit: { opacity: 0, scale: 0, y: -250, x: 130 },
+  };
+
   return (
     <div>
       <button onClick={onClick}>
@@ -53,55 +60,67 @@ export default function PostEdit({ result, category }) {
           />
         </svg>
       </button>
-      {editMode ? (
-        <div className="absolute left-1/4 top-[130px] bg-green-300 space-y-3 w-3/4 ">
-          <h3 className="text-center pt-3 text-lg">Post Edit</h3>
-          <form
-            className=" flex flex-col p-3 "
-            onSubmit={handleSubmit(onValid)}
+      <AnimatePresence>
+        {editMode ? (
+          <motion.div
+            variants={editVars}
+            initial="initial"
+            animate="visible"
+            exit="exit"
+            className="absolute left-1/4 top-[130px] bg-green-300 rounded-md shadow-md space-y-3 w-3/4 z-10 "
           >
-            <label htmlFor="category">Category</label>
-            <select
-              {...register("category")}
-              name="category"
-              id="category"
-              className="flex w-full rounded-md p-1 my-2"
-              defaultValue={result.category}
+            <h3 className="text-center pt-3 text-lg">Post Edit</h3>
+            <form
+              className=" flex flex-col p-3 "
+              onSubmit={handleSubmit(onValid)}
             >
-              {category.map((item, index) => (
-                <option key={index}>{item}</option>
-              ))}
-            </select>
-            <label htmlFor="title">Title</label>
-            <input
-              {...register("title")}
-              id="title"
-              name="title"
-              type="text"
-              className="p-1 px-3 my-2 mb-3  rounded-md"
-              defaultValue={result.title}
-            />
-            <label htmlFor="content" className="">
-              Content
-            </label>
-            <textarea
-              {...register("content")}
-              id="content"
-              name="content"
-              className="p-1 rounded-md px-3 my-2 h-56"
-              defaultValue={result.content}
-            />
-            <div className="grid grid-cols-2 space-x-2 mt-3">
-              <button className="bg-red-300 rounded-md p-2" onClick={onClick}>
-                취소
-              </button>
-              <button className="bg-green-400 rounded-md p-2" type="submit">
-                수정
-              </button>
-            </div>
-          </form>
-        </div>
-      ) : null}
+              <label htmlFor="category">Category</label>
+              <select
+                {...register("category")}
+                name="category"
+                id="category"
+                className="flex w-full rounded-md p-1 my-2"
+                defaultValue={result.category}
+              >
+                {category.map((item, index) => (
+                  <option key={index}>{item}</option>
+                ))}
+              </select>
+              <label htmlFor="title">Title</label>
+              <input
+                {...register("title")}
+                id="title"
+                name="title"
+                type="text"
+                className="p-1 px-3 my-2 mb-3  rounded-md"
+                defaultValue={result.title}
+              />
+              <label htmlFor="content" className="">
+                Content
+              </label>
+              <textarea
+                {...register("content")}
+                id="content"
+                name="content"
+                className="p-1 rounded-md px-3 my-2 h-60"
+                defaultValue={result.content}
+              />
+              <div className="grid grid-cols-2 space-x-2 mt-3">
+                <button
+                  className="bg-red-300 rounded-md p-2"
+                  type="button"
+                  onClick={onClick}
+                >
+                  취소
+                </button>
+                <button className="bg-green-400 rounded-md p-2" type="submit">
+                  수정
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }

@@ -10,7 +10,7 @@ export default async function Category() {
   return (
     <div className="p-3">
       <details className="flex flex-col space-y-3 px-1">
-        <summary>Category(all은삭제금지)</summary>
+        <summary>Category</summary>
         {result.map(async (item) => {
           item._id = item._id.toString();
           const postCount = await db
