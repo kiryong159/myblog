@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Category from "./category";
-
+import Search from "./search";
 export default function Nav({ child }) {
   return (
     <>
-      <div className="flex flex-col max-w-5xl  w-full bg-gray-300 fixed top-0 left-0 right-0 mx-auto">
-        <div className="flex items-center bg-orange-200 w-full  p-5 px-10  space-x-3">
+      <div className="flex flex-col max-w-5xl  w-full  bg-gray-300 fixed top-0 left-0 right-0 mx-auto">
+        <div className="flex items-center bg-orange-200 h-[70px] w-full  p-4 px-10  space-x-3">
           <Link href={"/"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -22,22 +22,6 @@ export default function Nav({ child }) {
               />
             </svg>
           </Link>
-          <span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-          </span>
           <span>로그인</span>
           <Link href="/write" className="flex items-center">
             <svg
@@ -56,6 +40,7 @@ export default function Nav({ child }) {
             </svg>
             <span>글쓰기</span>
           </Link>
+          <Search />
         </div>
         <div className="flex">
           <div className="relative left-0 bg-yellow-300 w-1/4 ">

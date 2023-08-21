@@ -26,7 +26,7 @@ export default async function Category() {
               className="px-5"
               key={item._id}
             >
-              {item.category}(
+              {item.category} (
               {item.category === "All" ? allCount.length : postCount.length})
             </Link>
           );

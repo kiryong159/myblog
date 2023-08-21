@@ -23,8 +23,12 @@ export default async function CategoryPage(prop) {
           key={item._id}
           className="flex justify-between font-bold bg-white w-full rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
         >
-          <Link className="w-3/4" href={`/list/${item.category}/${item._id}`}>
-            {item.title}
+          <Link
+            className="flex space-x-5 w-3/4"
+            href={`/list/${item.category}/${item._id}`}
+          >
+            <span className="text-xs text-gray-500">({item.category})</span>
+            <span>{item.title}</span>
           </Link>
           <span className="text-gray-500 text-xs w-1/4 flex justify-end">
             {formattedDate(item.postAt.toString())}

@@ -27,3 +27,5 @@ export default function Home() {
 // state에 math.ceil(list.length/offset)  page 최대갯수
 
 //댓글 수정,삭제시 세션 주인 확인
+
+//검색 -> 이름으로 검색 / 내용으로 검색
