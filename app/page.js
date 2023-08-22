@@ -23,8 +23,8 @@ export default function Home() {
 //edit같은거에 애니메이션 넣어보기 (ok) // search에도 넣으면될듯.
 
 //글목록 페이지 제작해보기? - 보류
+// state에 math.ceil(list.length/offset)  page index
 // 페이지 만들기 / list.slice(offset*index,offset*index+offset)
-// state에 math.ceil(list.length/offset)  page 최대갯수
 
 //댓글 수정,삭제시 세션 주인 확인
 

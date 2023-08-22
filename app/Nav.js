@@ -4,7 +4,7 @@ import Search from "./search";
 export default function Nav({ child }) {
   return (
     <>
-      <div className="flex flex-col max-w-5xl  w-full  bg-gray-300 fixed top-0 left-0 right-0 mx-auto">
+      <div className="flex flex-col max-w-5xl  w-full  bg-gray-100 fixed top-0 left-0 right-0 mx-auto h-full max-h-[760px]">
         <div className="flex items-center bg-orange-200 h-[70px] w-full  p-4 px-10  space-x-3">
           <Link href={"/"}>
             <svg
