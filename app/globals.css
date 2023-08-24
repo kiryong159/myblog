@@ -145,3 +145,19 @@ table {
   box-shadow: none;
   border-radius: 10px;
 }
+
+.NavScrollBar {
+  overflow-y: scroll;
+}
+.NavScrollBar::-webkit-scrollbar {
+  width: 10px;
+}
+.NavScrollBar::-webkit-scrollbar-thumb {
+  background-color: #7bed9f;
+  border-radius: 10px;
+}
+.NavScrollBar::-webkit-scrollbar-track {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 10px;
+}

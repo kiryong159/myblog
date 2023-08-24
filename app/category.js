@@ -8,7 +8,7 @@ export default async function Category() {
   const allCount = await db.collection("post").find().toArray();
 
   return (
-    <div className="p-3">
+    <div className="p-3 ">
       <details className="flex flex-col space-y-3 px-1">
         <summary>Category</summary>
         {result.map(async (item) => {

@@ -28,4 +28,6 @@ export default function Home() {
 
 //댓글 수정,삭제시 세션 주인 확인
 
+//댓글 없을때 css
+
 //검색 -> 이름으로 검색 / 내용으로 검색

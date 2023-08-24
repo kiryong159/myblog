@@ -11,7 +11,6 @@ export default function WriteForm({ category }) {
     return router.back();
   };
   const onValid = async (data) => {
-    console.log("writeForm의 data", data);
     const datenow = new Date();
     // 현재 시간을 UTC 방식으로 변환하여 전송
     //그냥 datenow를 보내면 UTC와 KST(한국표준시) 의 차이때문에 시간이 다르게 저장됨.
@@ -38,7 +37,6 @@ export default function WriteForm({ category }) {
         }
       });
   };
-  console.log(formState.errors);
   return (
     <div className="space-y-3">
       <h4 className="text-center text-3xl">글 쓰기 </h4>

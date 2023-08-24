@@ -1,6 +1,7 @@
 import { connectDB } from "@/util/database";
-import formattedDate from "@/util/formatDate";
+
 import Link from "next/link";
+import ListMap from "./listmap";
 
 // 글 목록 보이는 페이지
 export default async function CategoryPage(prop) {
@@ -9,32 +10,24 @@ export default async function CategoryPage(prop) {
   let result = null;
   if (category === "All") {
     result = await db.collection("post").find().toArray();
+    result = result.map((item) => {
+      item._id = item._id.toString();
+      return item;
+    });
     result = result.reverse();
   } else {
     result = await db.collection("post").find({ category: category }).toArray();
+    result = result.map((item) => {
+      item._id = item._id.toString();
+      return item;
+    });
     result = result.reverse();
   }
 
   return (
-    <div className="p-5 space-y-3">
+    <div className="p-5 space-y-3 h-[670px]">
       <h1 className="p-3 text-center font-bold text-2xl">{category}</h1>
-      {result.map((item) => (
-        <div
-          key={item._id}
-          className="flex justify-between font-bold bg-white w-full rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
-        >
-          <Link
-            className="flex space-x-5 w-3/4"
-            href={`/list/${item.category}/${item._id}`}
-          >
-            <span className="text-xs text-gray-500">({item.category})</span>
-            <span>{item.title}</span>
-          </Link>
-          <span className="text-gray-500 text-xs w-1/4 flex justify-end">
-            {formattedDate(item.postAt.toString())}
-          </span>
-        </div>
-      ))}
+      <ListMap result={result} />
     </div>
   );
 }
