@@ -1,6 +1,5 @@
 import { connectDB } from "@/util/database";
 
-import Link from "next/link";
 import ListMap from "./listmap";
 
 // 글 목록 보이는 페이지

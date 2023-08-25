@@ -3,12 +3,10 @@
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-export default function CommentWrite({ postId }) {
+export default function CommentWrite({ postId, author, email }) {
   const { register, handleSubmit, formState, reset } = useForm();
   const router = useRouter();
   const onValid = async (data) => {
-    //세션 구현시 추가
-    console.log("댓글작성 data", data.comment);
     const datenow = new Date();
     const datenowUTC = new Date(
       datenow.getTime() - datenow.getTimezoneOffset() * 60000
@@ -16,7 +14,8 @@ export default function CommentWrite({ postId }) {
     await fetch("/api/comment/write", {
       method: "POST",
       body: JSON.stringify({
-        author: "세션 구현시 추가",
+        author: author,
+        authorEmail: email,
         comment: data.comment,
         parentId: postId,
         commentAt: datenowUTC,

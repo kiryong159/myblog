@@ -61,7 +61,7 @@ export default function CommentEdit({ commentData }) {
             initial="initial"
             animate="visible"
             exit="exit"
-            className="p-3 px-5 absolute left-[4%] top-1/2 bg-purple-300 rounded-md space-y-3 z-10 w-full max-w-xl"
+            className="p-3 px-5 absolute left-[10%] top-0 bg-purple-300 rounded-md space-y-3 z-10 w-full max-w-xl"
           >
             <h4 className=" text-center text-xl font-bold">댓글 수정</h4>
             <form

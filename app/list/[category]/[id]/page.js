@@ -1,6 +1,8 @@
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { connectDB } from "@/util/database";
 import formattedDate from "@/util/formatDate";
 import { ObjectId } from "mongodb";
+import { getServerSession } from "next-auth";
 import Backbtn from "./backBtn";
 import Comment from "./Comment";
 import PostDeleteBtn from "./Delete";
@@ -19,13 +21,22 @@ export default async function PostDetail(prop) {
   category = category.map((obj) => {
     return obj.category;
   });
+
+  let session = await getServerSession(authOptions);
+  let admin = session
+    ? session.user.name === "박기룡" || session.user.name === "kiryong"
+    : false;
   return (
     <div className="flex flex-col p-5 space-y-3">
       <div className="flex justify-between items-center">
         <Backbtn />
         <div className="flex justify-end space-x-3 items-center">
-          <PostEdit result={result} category={category} />
-          <PostDeleteBtn postId={postId} />
+          {admin ? (
+            <>
+              <PostEdit result={result} category={category} />
+              <PostDeleteBtn postId={postId} />
+            </>
+          ) : null}
           <span>{result.category} </span>
           <span>{formattedDate(result.postAt.toString())}</span>
         </div>

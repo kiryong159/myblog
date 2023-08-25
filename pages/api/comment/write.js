@@ -7,8 +7,10 @@ export default async function CommentWriteHandler(req, res) {
   if (req.method === "POST") {
     let result = await db.collection("comment").insertOne({
       author: req.body.author,
+      authorEmail: req.body.authorEmail,
       comment: req.body.comment,
       parentId: req.body.parentId,
+
       commentAt: req.body.commentAt,
     });
   } else {

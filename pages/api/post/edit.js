@@ -3,7 +3,6 @@ import { ObjectId } from "mongodb";
 
 export default async function postEdit(req, res) {
   req.body = JSON.parse(req.body);
-  console.log("리퀘.바디", req.body);
   const db = (await connectDB).db("blog");
 
   if (req.method === "POST") {

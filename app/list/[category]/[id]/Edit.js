@@ -17,7 +17,6 @@ export default function PostEdit({ result, category }) {
   };
 
   const onValid = async (event) => {
-    console.log("edit.event", event);
     await fetch("/api/post/edit", {
       method: "POST",
       body: JSON.stringify({

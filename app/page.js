@@ -42,8 +42,13 @@ export default function Home() {
 // state에 math.ceil(list.length/offset)  page index
 // 페이지 만들기 / list.slice(offset*index,offset*index+offset)
 
-//댓글 수정,삭제시 세션 주인 확인
+//댓글 수정,삭제시 세션 주인 확인 (ok)
 
 //댓글 없을때 css(ok)
 
 //검색 -> 이름으로 검색 / 내용으로 검색 (ok)
+
+//홈 css
+// 사진 ? 스토리지 ?
+
+// 카테고리 조지기 or 애니메이션
