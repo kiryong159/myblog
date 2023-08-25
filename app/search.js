@@ -76,7 +76,7 @@ export default function Search() {
   const overlayVars = {
     initial: { opacity: 0, scale: 1, y: 0 },
     visible: { opacity: 0.3, scale: 1, y: 0 },
-    exit: { opacity: 0, scale: 0, y: -400 },
+    exit: { opacity: 0, scale: 0, y: -400, x: -200 },
   };
 
   const offset = 5;
@@ -150,7 +150,7 @@ export default function Search() {
               initial="initial"
               animate="visible"
               exit="exit"
-              className="bg-gray-700 absolute h-screen w-[200vw] overflow-hidden  top-0 left-[-500px] z-20 cursor-pointer"
+              className="bg-gray-700 absolute h-screen w-[200vw] overflow-hidden  top-0 left-[-500px] z-40 cursor-pointer"
               onClick={overlayClick}
               transition={{ type: "tween" }}
             ></motion.div>
@@ -160,7 +160,7 @@ export default function Search() {
               animate="visible"
               exit="exit"
               transition={{ duration: 0.7, type: "spring", bounce: 0.5 }}
-              className="absolute flex space-y-3 flex-col p-3 rounded-md shadow-md h-full max-w-3xl max-h-[780px] w-full bg-green-300 top-[70px] right-0 z-30"
+              className="absolute flex left-1/4 top-[70px]  space-y-3 flex-col p-3 rounded-md shadow-md h-[780px] max-w-3xl max-h-[780px] w-full bg-green-300 z-50"
             >
               <div className="flex items-center">
                 <button className="w-1/6" onClick={() => setResultState(false)}>

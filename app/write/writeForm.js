@@ -8,7 +8,7 @@ export default function WriteForm({ category }) {
   const router = useRouter();
   const { register, handleSubmit, formState } = useForm();
   const onClick = () => {
-    return router.back();
+    return router.push("/");
   };
   const onValid = async (data) => {
     const datenow = new Date();
