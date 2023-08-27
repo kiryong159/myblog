@@ -20,7 +20,7 @@ export default async function Comment({ postId }) {
   let sessionEmail = session ? session.user.email : null;
 
   return (
-    <div className="flex flex-col bg-white w-full p-3 rounded-md space-y-3 ">
+    <div className="flex flex-col bg-gray-100 w-full p-3 rounded-md space-y-3 ">
       {session ? (
         <CommentWrite
           postId={postId}

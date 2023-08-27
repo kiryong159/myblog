@@ -38,7 +38,7 @@ export default function WriteForm({ category }) {
       });
   };
   return (
-    <div className="space-y-3">
+    <div className="py-5 space-y-3">
       <h4 className="text-center text-3xl">글 쓰기 </h4>
       <form className="flex flex-col px-3" onSubmit={handleSubmit(onValid)}>
         <label htmlFor="category">Category</label>
@@ -46,7 +46,7 @@ export default function WriteForm({ category }) {
           {...register("category")}
           name="category"
           id="category"
-          className="flex w-full rounded-md p-1 my-2"
+          className="flex w-full rounded-md p-1 my-2 border-[1px] border-gray-700"
         >
           {category.map((item, index) => (
             <option key={index}>{item}</option>
@@ -66,7 +66,7 @@ export default function WriteForm({ category }) {
           id="title"
           name="title"
           type="text"
-          className="p-1 px-3 my-2 mb-3  rounded-md"
+          className="p-1 px-3 my-2 mb-3  rounded-md  border-[1px] border-gray-700"
         />
         <div className="flex space-x-5">
           <label htmlFor="content">Content</label>
@@ -81,7 +81,7 @@ export default function WriteForm({ category }) {
           {...register("content", { required: "내용을 써주세요." })}
           id="content"
           name="content"
-          className="p-2 rounded-md px-3 my-2 h-56"
+          className="p-2 rounded-md px-3 my-2 h-56 border-[1px] border-gray-700"
         />
         <div className="grid grid-cols-2 space-x-2 mt-3 p-3">
           <button

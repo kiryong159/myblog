@@ -11,7 +11,7 @@ export default function Backbtn() {
   };
 
   return (
-    <button onClick={onClick}>
+    <button className="" onClick={onClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

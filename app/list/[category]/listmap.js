@@ -30,7 +30,7 @@ export default function ListMap({ result }) {
           .map((item) => (
             <div
               key={item._id}
-              className="flex justify-between font-bold bg-white w-full rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
+              className="flex justify-between font-bold bg-gray-100 shadow-md w-full rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
             >
               <Link
                 className="flex space-x-5 w-3/4"
@@ -50,7 +50,7 @@ export default function ListMap({ result }) {
           <button
             className={`p-1 rounded-md shadow-md w-8 transition-all ${
               pageIndex + 1 === Number(item)
-                ? "bg-purple-300 hover:cursor-default"
+                ? "bg-purple-300 hover:cursor-default  ring-2 ring-purple-300 ring-offset-1"
                 : "bg-white hover:bg-gray-300 hover:scale-110 "
             }`}
             onClick={() => indexChange(item)}

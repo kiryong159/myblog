@@ -132,11 +132,11 @@ table {
 }
 /* 스크롤바 넓이 조정 */
 .commentScrollBar::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
 }
 /* 스크롤바 잡는부분 색상 */
 .commentScrollBar::-webkit-scrollbar-thumb {
-  background-color: #7bed9f;
+  background-color: #a29bfe;
   border-radius: 10px;
 }
 /* 스크롤바 남는부분 색상 */
@@ -150,10 +150,10 @@ table {
   overflow-y: scroll;
 }
 .NavScrollBar::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
 }
 .NavScrollBar::-webkit-scrollbar-thumb {
-  background-color: #7bed9f;
+  background-color: #a29bfe;
   border-radius: 10px;
 }
 .NavScrollBar::-webkit-scrollbar-track {

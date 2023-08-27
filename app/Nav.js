@@ -59,7 +59,7 @@ export default async function Nav({ child }) {
             <Category />
           </div>
         </div>
-        <div className="w-3/5 bg-blue-200 rounded-md shadow-md ">{child}</div>
+        <div className="w-3/5 bg-white rounded-md shadow-md ">{child}</div>
       </div>
     </div>
   );

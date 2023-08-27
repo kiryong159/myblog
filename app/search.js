@@ -10,7 +10,6 @@ export default function Search() {
   const [isSearch, setIsSearch] = useState(false);
   const router = useRouter();
   const { register, handleSubmit, formState, reset } = useForm();
-
   const [keyword, setKeyword] = useState("");
   const [contentResult, setContentResult] = useState([]);
   const [titleResult, setTitleResult] = useState([]);
@@ -125,13 +124,18 @@ export default function Search() {
             animate="visible"
             exit="exit"
             transition={{ duration: 0.5, type: "spring", bounce: 0.5 }}
-            className="flex space-x-2 items-center "
+            className="flex space-x-2 items-center  "
           >
             <input
               {...register("keyword", { required: "검색어를 입력하세요" })}
               name="keyword"
               type="text"
-              className="flex p-1  px-3 rounded-md shadow-md "
+              placeholder={
+                formState.errors.keyword === undefined
+                  ? "검색어를 입력하세요"
+                  : `${formState.errors.keyword.message}`
+              }
+              className="flex p-1  px-3 rounded-md shadow-md border-[1px] border-gray-700"
             />
             <button
               className="text-xs font-bold p-1 px-4 rounded-md shadow-md transition-all bg-purple-300 hover:bg-purple-400 hover:scale-105"
@@ -220,7 +224,7 @@ export default function Search() {
                         <button
                           className={`p-1 rounded-md shadow-md w-8 transition-all ${
                             titleNowIndex + 1 === Number(item)
-                              ? "bg-purple-300 hover:cursor-default"
+                              ? "bg-purple-300 hover:cursor-default ring-1 ring-purple-300 ring-offset-1 "
                               : "bg-white hover:bg-gray-300 hover:scale-110 "
                           }`}
                           key={item}
@@ -270,7 +274,7 @@ export default function Search() {
                           onClick={() => contentIndexChange(item)}
                           className={`p-1 rounded-md shadow-md w-8 transition-all ${
                             contentNowIndex + 1 === Number(item)
-                              ? "bg-purple-300 hover:cursor-default"
+                              ? "bg-purple-300 hover:cursor-default ring-1 ring-purple-300 ring-offset-1"
                               : "bg-white hover:bg-gray-300 hover:scale-110 "
                           }`}
                         >
