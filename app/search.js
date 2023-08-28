@@ -164,7 +164,7 @@ export default function Search() {
               animate="visible"
               exit="exit"
               transition={{ duration: 0.7, type: "spring", bounce: 0.5 }}
-              className="absolute flex left-1/4 top-[70px]  space-y-3 flex-col p-3 rounded-md shadow-md h-[780px] max-w-3xl max-h-[780px] w-full bg-green-300 z-50"
+              className="absolute flex left-1/4 top-[70px]  space-y-3 flex-col p-3 rounded-md shadow-md h-[780px] max-w-3xl max-h-[780px] w-full bg-white z-50"
             >
               <div className="flex items-center">
                 <button className="w-1/6" onClick={() => setResultState(false)}>
@@ -201,7 +201,7 @@ export default function Search() {
                     .map((item) => (
                       <div
                         key={item._id}
-                        className="flex justify-between font-bold bg-white w-full rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
+                        className="flex justify-between font-bold bg-gray-100 w-full shadow-md rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
                       >
                         <button
                           className=" flex w-3/4 space-x-5"
@@ -224,7 +224,7 @@ export default function Search() {
                         <button
                           className={`p-1 rounded-md shadow-md w-8 transition-all ${
                             titleNowIndex + 1 === Number(item)
-                              ? "bg-purple-300 hover:cursor-default ring-1 ring-purple-300 ring-offset-1 "
+                              ? "bg-purple-300 hover:cursor-default ring-2 ring-purple-300 ring-offset-2 "
                               : "bg-white hover:bg-gray-300 hover:scale-110 "
                           }`}
                           key={item}
@@ -249,7 +249,7 @@ export default function Search() {
                     .map((item) => (
                       <div
                         key={item._id}
-                        className="flex justify-between font-bold bg-white w-full rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
+                        className="flex justify-between font-bold bg-gray-100 shadow-md w-full rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
                       >
                         <button
                           className=" flex w-3/4 space-x-5"
@@ -274,7 +274,7 @@ export default function Search() {
                           onClick={() => contentIndexChange(item)}
                           className={`p-1 rounded-md shadow-md w-8 transition-all ${
                             contentNowIndex + 1 === Number(item)
-                              ? "bg-purple-300 hover:cursor-default ring-1 ring-purple-300 ring-offset-1"
+                              ? "bg-purple-300 hover:cursor-default ring-2 ring-purple-300 ring-offset-2"
                               : "bg-white hover:bg-gray-300 hover:scale-110 "
                           }`}
                         >

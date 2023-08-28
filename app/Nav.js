@@ -53,13 +53,16 @@ export default async function Nav({ child }) {
         <Search />
       </div>
       <div className="relative left-[10%] flex mt-[75px]  ">
-        <div className=" bg-gray-100 w-1/5   ">
-          <div className="fixed ">
+        <div className=" bg-gray-300  w-1/5  ">
+          <div className="fixed w-1/5">
             <div className=" h-40">프로필</div>
+            <div className="border-b border-gray-400  border-solid" />
             <Category />
           </div>
         </div>
-        <div className="w-3/5 bg-white rounded-md shadow-md ">{child}</div>
+        <div className="w-3/5 bg-white rounded-md  shadow-[1px_1px_1px_rgba(0,0,0,0.3)] ">
+          {child}
+        </div>
       </div>
     </div>
   );

@@ -62,9 +62,9 @@ export default function Home() {
 
 //홈 css (ok)
 
-// 사진 ? 스토리지 ?
+// 카테고리 조지기 or 애니메이션 (ok)
 
-// 카테고리 조지기 or 애니메이션
+// 사진 ? 스토리지 ?
 
 //dark mode
 //추후 사이즈 조절
