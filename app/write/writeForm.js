@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -7,19 +8,45 @@ import { useForm } from "react-hook-form";
 //글쓰기 form 페이지
 export default function WriteForm({ category }) {
   const router = useRouter();
-  const { register, handleSubmit, formState } = useForm();
-  const [selectedImage, setSelectedImage] = useState(null);
+  const { register, handleSubmit, formState, getValues, setValue } = useForm();
+  const [preImg, setPreImg] = useState();
   const onClick = () => {
     return router.push("/");
   };
 
-  /*   const handleImgChange = (event) => {
-    const imgFile = event.target.files[0];
-    if (imgFile) {
-      const imageUrl = URL.createObjectURL(imgFile);
-      setSelectedImage(imageUrl);
+  const handleImgChange = async (event) => {
+    const file = event.target.files[0];
+    const fileName = Date.now() + "_" + file.name;
+    console.log("이미지파일", file);
+    let presignedUrl = await (
+      await fetch(`/api/post/s3uploader?file=${fileName}`)
+    ).json();
+
+    //S3 업로드
+    const formData = new FormData();
+    Object.entries({ ...presignedUrl.fields, file }).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    let 업로드결과 = await fetch(presignedUrl.url, {
+      method: "POST",
+      body: formData,
+    });
+    console.log(업로드결과);
+
+    if (업로드결과.ok) {
+      setPreImg(업로드결과.url + "/" + fileName);
+    } else {
+      console.log("실패");
     }
-  }; */
+  };
+
+  const insertImageToContent = () => {
+    if (preImg) {
+      const currentContent = getValues("content") || "";
+      setValue("content", `${currentContent} ![](${preImg})`);
+      setPreImg(null);
+    }
+  };
 
   const onValid = async (data) => {
     console.log(data);
@@ -30,7 +57,7 @@ export default function WriteForm({ category }) {
       datenow.getTime() - datenow.getTimezoneOffset() * 60000
     ).toISOString();
 
-    /*     await fetch("/api/post/write", {
+    await fetch("/api/post/write", {
       method: "POST",
       body: JSON.stringify({
         category: data.category,
@@ -47,7 +74,7 @@ export default function WriteForm({ category }) {
         } else {
           // ok가 아닐시 코드
         }
-      }); */
+      });
   };
   return (
     <div className="py-5 space-y-3">
@@ -119,12 +146,25 @@ export default function WriteForm({ category }) {
           </label>
           <input
             {...register("image")}
+            onChange={handleImgChange}
             id="image"
             type="file"
             accept="image/*"
             multiple
             className="hidden"
           />
+          {preImg && (
+            <Image
+              className="w-1/2 mx-auto rounded-md p-3"
+              width={500}
+              height={250}
+              src={preImg}
+              alt="PreImg"
+              onClick={() => {
+                insertImageToContent();
+              }}
+            />
+          )}
         </div>
 
         <div className="grid grid-cols-2 space-x-2 mt-2 p-3">

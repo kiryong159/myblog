@@ -5,15 +5,28 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import Category from "./category";
 import Search from "./search";
-
+import ThemeBtn from "./ThemeBtn";
+import { cookies } from "next/headers";
 export default async function Nav({ child }) {
   let session = await getServerSession(authOptions);
   let admin = session
     ? session.user.name === "박기룡" || session.user.name === "kiryong"
     : false;
+  let cookie = cookies().get("isDark");
+  let isDark =
+    cookie !== undefined ? (cookie.value === "true" ? true : false) : "no";
+  console.log("Nav isDark?", isDark);
   return (
-    <div className=" flex flex-col  w-[100vw]  bg-white fixed top-0 left-0 right-0  h-full NavScrollBar overflow-x-hidden">
-      <div className="fixed z-10 top-0 flex items-center shadow-md rounded-md bg-white h-[70px] w-[81.5%]  p-4 px-10  space-x-3 left-[9%]">
+    <div
+      className={`flex flex-col  w-[100vw]   fixed top-0 left-0 right-0  h-full NavScrollBar overflow-x-hidden ${
+        isDark === true ? "bg-gray-700" : "bg-white"
+      }`}
+    >
+      <div
+        className={`fixed z-10 top-0 flex items-center shadow-md rounded-md  h-[70px] w-[81.5%]  p-4 px-10  space-x-3 left-[9%] ${
+          isDark === true ? "bg-gray-500 text-gray-100" : "bg-white"
+        }`}
+      >
         <Link href={"/"}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -50,17 +63,26 @@ export default async function Nav({ child }) {
             <span>글쓰기</span>
           </Link>
         ) : null}
-        <Search />
+        <ThemeBtn isDark={isDark} />
+        <Search isDark={isDark} />
       </div>
       <div className="relative left-[10%] flex mt-[75px]  ">
-        <div className=" bg-gray-300  w-1/5  ">
+        <div
+          className={`  w-1/5 ${
+            isDark === true ? "bg-gray-700 text-white" : "bg-white"
+          }`}
+        >
           <div className="fixed w-1/5">
-            <div className=" h-40">프로필</div>
-            <div className="border-b border-gray-400  border-solid" />
+            <div className="h-40 bg-yellow-500 rounded-md">프로필</div>
+            <div className="border-b border-gray-400  border-solid m-1" />
             <Category />
           </div>
         </div>
-        <div className="w-3/5 bg-white rounded-md  shadow-[1px_1px_1px_rgba(0,0,0,0.3)] ">
+        <div
+          className={`w-3/5  rounded-md  shadow-[1px_1px_1px_rgba(0,0,0,0.3)] ${
+            isDark === true ? "bg-gray-500" : "bg-white"
+          }`}
+        >
           {child}
         </div>
       </div>

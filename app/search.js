@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import formattedDate from "@/util/formatDate";
 import { useRouter } from "next/navigation";
 
-export default function Search() {
+export default function Search({ isDark }) {
   const [isSearch, setIsSearch] = useState(false);
   const router = useRouter();
   const { register, handleSubmit, formState, reset } = useForm();
@@ -135,10 +135,10 @@ export default function Search() {
                   ? "검색어를 입력하세요"
                   : `${formState.errors.keyword.message}`
               }
-              className="flex p-1  px-3 rounded-md shadow-md border-[1px] border-gray-700"
+              className="flex p-1  px-3 rounded-md shadow-md border-[1px] border-gray-700 text-black"
             />
             <button
-              className="text-xs font-bold p-1 px-4 rounded-md shadow-md transition-all bg-purple-300 hover:bg-purple-400 hover:scale-105"
+              className="text-xs font-bold p-1 px-4 rounded-md shadow-md transition-all text-black bg-purple-300 hover:bg-purple-400 hover:scale-105"
               onClick={handleSubmit(onValid)}
             >
               검색
@@ -154,7 +154,9 @@ export default function Search() {
               initial="initial"
               animate="visible"
               exit="exit"
-              className="bg-gray-700 absolute h-screen w-[200vw] overflow-hidden  top-0 left-[-500px] z-40 cursor-pointer"
+              className={` absolute h-screen w-[200vw] overflow-hidden  top-0 left-[-500px] z-40 cursor-pointer ${
+                isDark === true ? "bg-black" : "bg-gray-900"
+              }`}
               onClick={overlayClick}
               transition={{ type: "tween" }}
             ></motion.div>
@@ -164,7 +166,9 @@ export default function Search() {
               animate="visible"
               exit="exit"
               transition={{ duration: 0.7, type: "spring", bounce: 0.5 }}
-              className="absolute flex left-1/4 top-[70px]  space-y-3 flex-col p-3 rounded-md shadow-md h-[780px] max-w-3xl max-h-[780px] w-full bg-white z-50"
+              className={`absolute flex left-1/4 top-[70px]  space-y-3 flex-col p-3 rounded-md shadow-md h-[780px] max-w-3xl max-h-[780px] w-full  z-50 ${
+                isDark === true ? "bg-gray-600 text-white" : "bg-white"
+              }`}
             >
               <div className="flex items-center">
                 <button className="w-1/6" onClick={() => setResultState(false)}>
@@ -201,18 +205,34 @@ export default function Search() {
                     .map((item) => (
                       <div
                         key={item._id}
-                        className="flex justify-between font-bold bg-gray-100 w-full shadow-md rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
+                        className={`flex group justify-between font-bold w-full shadow-md rounded-md p-3   transition-all ${
+                          isDark === true
+                            ? "bg-gray-400 hover:bg-gray-300 hover:text-purple-500"
+                            : "bg-gray-100 hover:bg-gray-200 hover:text-purple-500"
+                        }`}
                       >
                         <button
                           className=" flex w-3/4 space-x-5"
                           onClick={() => pageGo(item)}
                         >
-                          <span className="text-xs text-gray-500">
+                          <span
+                            className={`text-xs  ${
+                              isDark === true
+                                ? "text-gray-100 group-hover:text-gray-600"
+                                : "text-gray-500"
+                            }`}
+                          >
                             ({item.category})
                           </span>
                           <span>{item.title}</span>
                         </button>
-                        <span className="text-gray-500 text-xs w-1/4 flex justify-end">
+                        <span
+                          className={` text-xs w-1/4 flex justify-end ${
+                            isDark === true
+                              ? "text-gray-100 group-hover:text-gray-600"
+                              : "text-gray-500"
+                          }`}
+                        >
                           {formattedDate(item.postAt.toString())}
                         </span>
                       </div>
@@ -225,6 +245,8 @@ export default function Search() {
                           className={`p-1 rounded-md shadow-md w-8 transition-all ${
                             titleNowIndex + 1 === Number(item)
                               ? "bg-purple-300 hover:cursor-default ring-2 ring-purple-300 ring-offset-2 "
+                              : isDark
+                              ? "bg-gray-400 hover:text-gray-700 hover:bg-gray-300 hover:scale-110"
                               : "bg-white hover:bg-gray-300 hover:scale-110 "
                           }`}
                           key={item}
@@ -249,18 +271,34 @@ export default function Search() {
                     .map((item) => (
                       <div
                         key={item._id}
-                        className="flex justify-between font-bold bg-gray-100 shadow-md w-full rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
+                        className={`flex group justify-between font-bold w-full shadow-md rounded-md p-3   transition-all ${
+                          isDark === true
+                            ? "bg-gray-400 hover:bg-gray-300 hover:text-purple-500"
+                            : "bg-gray-100 hover:bg-gray-200 hover:text-purple-500"
+                        }`}
                       >
                         <button
                           className=" flex w-3/4 space-x-5"
                           onClick={() => pageGo(item)}
                         >
-                          <span className="text-xs text-gray-500">
+                          <span
+                            className={`text-xs  ${
+                              isDark === true
+                                ? "text-gray-100 group-hover:text-gray-600"
+                                : "text-gray-500"
+                            }`}
+                          >
                             ({item.category})
                           </span>
                           <span>{item.title}</span>
                         </button>
-                        <span className="text-gray-500 text-xs w-1/4 flex justify-end">
+                        <span
+                          className={` text-xs w-1/4 flex justify-end ${
+                            isDark === true
+                              ? "text-gray-100 group-hover:text-gray-600"
+                              : "text-gray-500"
+                          }`}
+                        >
                           {formattedDate(item.postAt.toString())}
                         </span>
                       </div>
@@ -274,7 +312,9 @@ export default function Search() {
                           onClick={() => contentIndexChange(item)}
                           className={`p-1 rounded-md shadow-md w-8 transition-all ${
                             contentNowIndex + 1 === Number(item)
-                              ? "bg-purple-300 hover:cursor-default ring-2 ring-purple-300 ring-offset-2"
+                              ? "bg-purple-300 hover:cursor-default ring-2 ring-purple-300 ring-offset-2 "
+                              : isDark
+                              ? "bg-gray-400 hover:text-gray-700 hover:bg-gray-300 hover:scale-110"
                               : "bg-white hover:bg-gray-300 hover:scale-110 "
                           }`}
                         >

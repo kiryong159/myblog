@@ -1,12 +1,30 @@
+import { cookies } from "next/headers";
 import HomeBox from "./homeBox";
 
 export default function Home() {
+  let cookie = cookies().get("isDark");
+  const isDark =
+    cookie !== undefined ? (cookie.value === "true" ? true : false) : false;
+  console.log("Home isDark?", isDark);
   return (
     <div className="w-full flex flex-col space-y-3  p-5 max-h-[670px] h-[670px]">
-      <h1 className="p-1 font-bold text-center text-3xl"> HOME</h1>
-      <h3 className="p-1 text-center font-medium text-xl ">제작 도움</h3>
+      <h1
+        className={`p-1 font-bold text-center text-3xl ${
+          isDark ? "text-gray-100" : ""
+        }`}
+      >
+        HOME
+      </h1>
+      <h3
+        className={`p-1 text-center font-medium text-xl ${
+          isDark ? "text-gray-100" : ""
+        }`}
+      >
+        제작 도움
+      </h3>
       <div className="w-full max-h-[520px] h-full flex flex-col space-y-5">
         <HomeBox
+          isDark={isDark}
           name1="NEXT.js"
           name2="Tailwind CSS"
           src1="https://i.namu.wiki/i/benNL9a8dR2OJgB-k4Dy7my7QKXO705Gt7bVk_chopoiAVwo5TTRprag2AbPQiH-uKREqi3euzMDpc8kHdtJKDV74y-RiklWytJyHCu5loVFmNtZIYNjEtAyv8_cSvvQuge0xmIA9797L8L28Q1QWg.svg"
@@ -15,6 +33,7 @@ export default function Home() {
           link2="https://tailwindcss.com/docs/installation"
         />
         <HomeBox
+          isDark={isDark}
           name1="MongoDB"
           name2="Chat GPT"
           src1="https://i.namu.wiki/i/xNULUQxFHCzb-N4HSyhd0KkTvsDOm5DAwwNhiN3YiWPEgJQetZdM95WPb_QBwNEowKhiCtst50h3OU7i1hLTqSy0DSE1OY_ADAM2OiPMzwuN3TdyxrKUf1zwM5OE6_53sLnCPYcCJEInhOiys_Vg1Q.svg"
@@ -23,12 +42,13 @@ export default function Home() {
           link2="https://chat.openai.com/"
         />
         <HomeBox
+          isDark={isDark}
           name1="Google"
-          name2="치킨 맛있음"
+          name2="AWS S3"
           src1="https://i.namu.wiki/i/m2eT5RqpjVLwVJQuR_0khbHtRP77sNCMAP8IsN4q2sMC01bO-Cv3cjXrrF0hbxrg5RpVUP8tGUuYyUdfPlPgMmlEYBR1k3BBzY-uAgdQJZtPkCh6dMSWDvQkdfsNz1Y3MQFhC5REt4ac7aFe5Kg5cg.svg"
-          src2="https://i.namu.wiki/i/Kwa4njW0LBARFyawuwr8GUe3htnyqlk_aHqAMoMR4GWw52hI4uB0SseSQlCvIbLHtpSqqTrykMda4qlGiojaW5tVwaNqgGFVJpM0bixQS88SuwxXI6JCqilrYLztq7Rr3Zx9nDNCPZkf2Ow_N9mSaA.webp"
+          src2="https://i.namu.wiki/i/fDHACbsquBfLLZr2pTRD-nF7Hn2Fajd3MEFmtCXEtT2qz_76SDCA7X5RXadxzex2yc56RArgnhOB1nQiAUO-PBNqT5rH6Zz_k3nTFtiiK6Bc8fQQuWOofOWCxP-nYKi8CiE_MS5u6zDpYq3RlMRy5A.svg"
           link1="https://www.google.co.kr/"
-          link2="https://namu.wiki/w/%EC%B9%98%ED%82%A8"
+          link2="https://s3.console.aws.amazon.com/"
         />
       </div>
     </div>
@@ -64,7 +84,10 @@ export default function Home() {
 
 // 카테고리 조지기 or 애니메이션 (ok)
 
-// 사진 ? 스토리지 ?
+// 사진 (s3 프리사인으로 업로드해서 등록만해도 업로드 되버림.)
+//스토리지  삭제관련 ( 글삭제시  / 취소시 삭제있는가? )
 
 //dark mode
 //추후 사이즈 조절
+
+//.count 수정해야할듯?

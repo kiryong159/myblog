@@ -7,6 +7,7 @@ import Backbtn from "./backBtn";
 import Comment from "./Comment";
 import PostDeleteBtn from "./Delete";
 import PostEdit from "./Edit";
+import ReactMarkdown from "react-markdown";
 
 // 글 내용 보는 페이지
 export default async function PostDetail(prop) {
@@ -43,7 +44,9 @@ export default async function PostDetail(prop) {
       </div>
       <h1 className="p-3 text-center font-bold text-2xl">{result.title}</h1>
       <div className="p-3 flex">
-        <pre>{result.content}</pre>
+        <ReactMarkdown className="whitespace-pre-line">
+          {result.content}
+        </ReactMarkdown>
       </div>
       <Comment postId={postId} />
     </div>

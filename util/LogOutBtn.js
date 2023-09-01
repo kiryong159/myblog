@@ -6,7 +6,7 @@ export default function LogOutBtn() {
   };
 
   return (
-    <button className="bg-purple-400" onClick={onClick}>
+    <button className="" onClick={onClick}>
       로그아웃
     </button>
   );
