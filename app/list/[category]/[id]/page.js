@@ -8,6 +8,7 @@ import Comment from "./Comment";
 import PostDeleteBtn from "./Delete";
 import PostEdit from "./Edit";
 import ReactMarkdown from "react-markdown";
+import { cookies } from "next/headers";
 
 // 글 내용 보는 페이지
 export default async function PostDetail(prop) {
@@ -27,8 +28,14 @@ export default async function PostDetail(prop) {
   let admin = session
     ? session.user.name === "박기룡" || session.user.name === "kiryong"
     : false;
+
+  let cookie = cookies().get("isDark");
+  const isDark =
+    cookie !== undefined ? (cookie.value === "true" ? true : false) : false;
   return (
-    <div className="flex flex-col p-5 space-y-3">
+    <div
+      className={`flex flex-col p-5 space-y-3 ${isDark ? "text-white" : ""}`}
+    >
       <div className="flex justify-between items-center">
         <Backbtn />
         <div className="flex justify-end space-x-3 items-center">
@@ -48,7 +55,7 @@ export default async function PostDetail(prop) {
           {result.content}
         </ReactMarkdown>
       </div>
-      <Comment postId={postId} />
+      <Comment postId={postId} isDark={isDark} />
     </div>
   );
 }

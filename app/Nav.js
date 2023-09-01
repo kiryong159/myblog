@@ -10,12 +10,13 @@ import { cookies } from "next/headers";
 export default async function Nav({ child }) {
   let session = await getServerSession(authOptions);
   let admin = session
-    ? session.user.name === "박기룡" || session.user.name === "kiryong"
+    ? session.user.name === "박기룡" ||
+      session.user.name === "kiryong" ||
+      session.user.email === "kiryong159@naver.com"
     : false;
   let cookie = cookies().get("isDark");
   let isDark =
     cookie !== undefined ? (cookie.value === "true" ? true : false) : "no";
-  console.log("Nav isDark?", isDark);
   return (
     <div
       className={`flex flex-col  w-[100vw]   fixed top-0 left-0 right-0  h-full NavScrollBar overflow-x-hidden ${
@@ -79,7 +80,7 @@ export default async function Nav({ child }) {
           </div>
         </div>
         <div
-          className={`w-3/5  rounded-md  shadow-[1px_1px_1px_rgba(0,0,0,0.3)] ${
+          className={`w-3/5  rounded-md  shadow-md ${
             isDark === true ? "bg-gray-500" : "bg-white"
           }`}
         >
@@ -107,3 +108,13 @@ export default async function Nav({ child }) {
     image: 'https://avatars.githubusercontent.com/u/116635003?v=4'
   }
 } */
+
+/* 디스코드 세션 정보
+{
+  user: {
+    name: 'RIMNIL',
+    email: 'kiryong159@naver.com',
+    image: 'https://cdn.discordapp.com/avatars/261091305105522689/b5769a5e9a172f8fc1b9f0debf51ce87.png'
+  }
+}
+*/

@@ -15,7 +15,6 @@ export default async function SearchHandler(req, res) {
       .collection("post")
       .find({ content: { $regex: regexKeyword } })
       .toArray();
-    console.log("검색결과", titleSearch, contentSearch);
     return res.status(200).json({ titleSearch, contentSearch });
   } else {
     return res.status(500).json("no");

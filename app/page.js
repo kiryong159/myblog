@@ -5,7 +5,7 @@ export default function Home() {
   let cookie = cookies().get("isDark");
   const isDark =
     cookie !== undefined ? (cookie.value === "true" ? true : false) : false;
-  console.log("Home isDark?", isDark);
+
   return (
     <div className="w-full flex flex-col space-y-3  p-5 max-h-[670px] h-[670px]">
       <h1
@@ -91,3 +91,14 @@ export default function Home() {
 //추후 사이즈 조절
 
 //.count 수정해야할듯?
+
+/* 
+오버레이 z40 서치 z50
+제일 외곽  bg-gray700
+nav bg-gray 500 
+글박스 bg-gray-400  hover:bg-gray-300  group
+카테고리,날자 bg-gray-100  group-hover:text-gray-600
+페이지버튼 bg-gray-400 hover-text:gray-700 hover-bg-gray-300
+홈 -> 기본 200 다크 300 
+
+*/

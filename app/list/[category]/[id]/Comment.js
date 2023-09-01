@@ -5,7 +5,7 @@ import CommentBox from "./CommentBox";
 import CommentWrite from "./CommentWrite";
 
 //댓글  작성 및 불러오는 곳
-export default async function Comment({ postId }) {
+export default async function Comment({ postId, isDark }) {
   const db = (await connectDB).db("blog");
   let commentList = await db
     .collection("comment")
@@ -20,7 +20,11 @@ export default async function Comment({ postId }) {
   let sessionEmail = session ? session.user.email : null;
 
   return (
-    <div className="flex flex-col bg-gray-100 w-full p-3 rounded-md space-y-3  shadow-inner">
+    <div
+      className={`flex flex-col bg-gray-100 w-full p-3 rounded-md space-y-3  shadow-inner ${
+        isDark ? "text-black" : ""
+      }`}
+    >
       {session ? (
         <CommentWrite
           postId={postId}
@@ -42,6 +46,7 @@ export default async function Comment({ postId }) {
               key={item._id}
               item={item}
               author={sessionEmail === item.authorEmail ? true : false}
+              isDark={isDark}
             />
           ))}
         </div>
