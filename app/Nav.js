@@ -12,7 +12,8 @@ export default async function Nav({ child }) {
   let admin = session
     ? session.user.name === "박기룡" ||
       session.user.name === "kiryong" ||
-      session.user.email === "kiryong159@naver.com"
+      session.user.email === "kiryong159@naver.com" ||
+      session.user.email === "kiryong1599@daum.net"
     : false;
   let cookie = cookies().get("isDark");
   let isDark =
@@ -99,22 +100,33 @@ export default async function Nav({ child }) {
     email: 'kiryong159@gmail.com',
     image: 'https://lh3.googleusercontent.com/a/AAcHTtcib0kyShhWpf6jpC1eK0NXoimnZs2skWeFJMI4JTGs=s96-c'
   }
-} */
-
-/* 깃헙 세션 정보  {
+}
+{깃헙 세션 정보 
   user: {
     name: 'kiryong',
     email: 'kiryong159@naver.com',
     image: 'https://avatars.githubusercontent.com/u/116635003?v=4'
   }
-} */
-
-/* 디스코드 세션 정보
-{
+}
+{디스코드 세션 정보
   user: {
     name: 'RIMNIL',
     email: 'kiryong159@naver.com',
     image: 'https://cdn.discordapp.com/avatars/261091305105522689/b5769a5e9a172f8fc1b9f0debf51ce87.png'
   }
+} 
+{카카오 세션 정보
+  user: {
+    name: '기룡',
+    email: 'kiryong1599@daum.net',
+    image: 'http://k.kakaocdn.net/dn/kLfO3/btrKZ1U5J2j/YhSYxkQbEKpaAnfkZVhXQ0/img_640x640.jpg'
+  }
 }
-*/
+{ 네이버 세션정보
+  user: {
+    name: '구렁'(별명이 표기됨),
+    email: 'kiryong159@naver.com',
+    image: 'https://phinf.pstatic.net/contact/profile/blog/78/14/kiryong159.jpg'
+  }
+}
+ */

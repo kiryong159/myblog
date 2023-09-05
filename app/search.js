@@ -154,7 +154,7 @@ export default function Search({ isDark }) {
               initial="initial"
               animate="visible"
               exit="exit"
-              className={` absolute h-screen w-[200vw] overflow-hidden  top-0 left-[-500px] z-40 cursor-pointer ${
+              className={` absolute h-screen w-[200vw] overflow-hidden  top-0 left-[-500px] z-50 cursor-pointer ${
                 isDark === true ? "bg-black" : "bg-gray-900"
               }`}
               onClick={overlayClick}
@@ -166,27 +166,30 @@ export default function Search({ isDark }) {
               animate="visible"
               exit="exit"
               transition={{ duration: 0.7, type: "spring", bounce: 0.5 }}
-              className={`absolute flex left-1/4 top-[70px]  space-y-3 flex-col p-3 rounded-md shadow-md h-[780px] max-w-3xl max-h-[780px] w-full  z-50 ${
+              className={`absolute flex left-1/4 top-[70px]  space-y-3 flex-col p-3 rounded-md shadow-md h-[780px] max-w-3xl max-h-[780px] w-full  z-[60] ${
                 isDark === true ? "bg-gray-600 text-white" : "bg-white"
               }`}
             >
               <div className="flex items-center">
-                <button className="w-1/6" onClick={() => setResultState(false)}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
-                    />
-                  </svg>
-                </button>
+                <div className="w-1/6">
+                  <button className="" onClick={() => setResultState(false)}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
                 <h4 className="text-center text-3xl w-4/6 ">
                   {keyword} 검색 결과
                 </h4>

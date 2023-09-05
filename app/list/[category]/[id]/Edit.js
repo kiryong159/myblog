@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 
 //글 수정 페이지
-export default function PostEdit({ result, category }) {
+export default function PostEdit({ result, category, isDark }) {
   const router = useRouter();
   const [editMode, setEditMode] = useState(false);
   const { register, handleSubmit, formState } = useForm();
@@ -67,7 +67,9 @@ export default function PostEdit({ result, category }) {
               initial="initial"
               animate="visible"
               exit="exit"
-              className="absolute left-[20%] top-[10%] bg-green-300 rounded-md shadow-md space-y-3 w-3/5 z-50 "
+              className={`absolute left-[20%] top-[10%]  rounded-md shadow-md space-y-3 w-3/5 z-30 ${
+                isDark ? "bg-gray-400 text-black" : "bg-green-300"
+              }`}
             >
               <h3 className="text-center pt-3 text-lg">Post Edit</h3>
               <form

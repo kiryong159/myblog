@@ -85,20 +85,23 @@ export default function Home() {
 // 카테고리 조지기 or 애니메이션 (ok)
 
 // 사진 (s3 프리사인으로 업로드해서 등록만해도 업로드 되버림.)
-//스토리지  삭제관련 ( 글삭제시  / 취소시 삭제있는가? )
+//스토리지  삭제관련 ( 글삭제시(OK)  / 취소시 삭제있는가? )
 
-//dark mode
+//dark mode -> 왜 2개지급되는가??? -> useEFFECT에 (()=>{},[]) 중 []가 없었음
 //추후 사이즈 조절
 
-//.count 수정해야할듯?
+//.count 수정해야할듯?(ok)
 
 /* 
-오버레이 z40 서치 z50
+오버레이 z40 서치 z50 에딧 z30
 제일 외곽  bg-gray700
 nav bg-gray 500 
 글박스 bg-gray-400  hover:bg-gray-300  group
 카테고리,날자 bg-gray-100  group-hover:text-gray-600
 페이지버튼 bg-gray-400 hover-text:gray-700 hover-bg-gray-300
 홈 -> 기본 200 다크 300 
-
 */
+
+//글에 markdwon 추가해보기
+
+//프로필 ->이수한것들 적엉

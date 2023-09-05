@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap");
+@import url("/path/to/styles/vs.css");
 html,
 body,
 div,
@@ -24,7 +25,6 @@ acronym,
 address,
 big,
 cite,
-code,
 del,
 dfn,
 em,
@@ -36,7 +36,6 @@ s,
 samp,
 small,
 strike,
-strong,
 sub,
 sup,
 tt,
@@ -161,3 +160,34 @@ table {
   box-shadow: none;
   border-radius: 10px;
 }
+
+.markdown h1 {
+  font-size: 40px;
+  margin: 16px;
+}
+.markdown h2 {
+  font-size: 32px;
+  margin: 16px;
+}
+.markdown h3 {
+  font-size: 24px;
+  margin: 16px;
+}
+.markdown h4 {
+  font-size: 18px;
+  margin: 16px;
+}
+.markdown blockquote {
+  background-color: #dfe6e9;
+  padding: 8px 8px 8px 10px;
+  border-left: 5px solid #a29bfe;
+  margin: 16px 0px;
+  width: 100%;
+}
+
+/* .markdown code {
+  font-size: 16px;
+  margin: 16px;
+  font-family: "Fira Mono", monospace;
+}
+ */

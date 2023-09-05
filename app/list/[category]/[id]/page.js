@@ -7,8 +7,8 @@ import Backbtn from "./backBtn";
 import Comment from "./Comment";
 import PostDeleteBtn from "./Delete";
 import PostEdit from "./Edit";
-import ReactMarkdown from "react-markdown";
 import { cookies } from "next/headers";
+import ViewContents from "./ViewContents";
 
 // 글 내용 보는 페이지
 export default async function PostDetail(prop) {
@@ -32,6 +32,7 @@ export default async function PostDetail(prop) {
   let cookie = cookies().get("isDark");
   const isDark =
     cookie !== undefined ? (cookie.value === "true" ? true : false) : false;
+
   return (
     <div
       className={`flex flex-col p-5 space-y-3 ${isDark ? "text-white" : ""}`}
@@ -41,7 +42,7 @@ export default async function PostDetail(prop) {
         <div className="flex justify-end space-x-3 items-center">
           {admin ? (
             <>
-              <PostEdit result={result} category={category} />
+              <PostEdit result={result} category={category} isDark={isDark} />
               <PostDeleteBtn postId={postId} />
             </>
           ) : null}
@@ -51,9 +52,7 @@ export default async function PostDetail(prop) {
       </div>
       <h1 className="p-3 text-center font-bold text-2xl">{result.title}</h1>
       <div className="p-3 flex">
-        <ReactMarkdown className="whitespace-pre-line">
-          {result.content}
-        </ReactMarkdown>
+        <ViewContents content={result.content} />
       </div>
       <Comment postId={postId} isDark={isDark} />
     </div>

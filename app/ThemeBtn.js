@@ -6,11 +6,14 @@ import { useEffect } from "react";
 export default function ThemeBtn({ isDark }) {
   const router = useRouter();
   useEffect(() => {
+    console.log("useeffect isDark?", isDark);
     if (isDark === "no") {
       document.cookie = "isDark=false; max-age-864000";
       router.refresh();
+    } else {
+      router.refresh();
     }
-  });
+  }, []);
 
   const themeChange = () => {
     if (isDark === true) {

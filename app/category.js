@@ -9,12 +9,11 @@ export default async function Category() {
   const allCount = await db.collection("post").find().toArray();
 
   const postCounts = await Promise.all(
-    categories.map(async (category) => {
-      const count = await db
+    categories.map(async (item) => {
+      let a = await db
         .collection("post")
-        .find({ category: category.category })
-        .count();
-      return { [category.category]: count };
+        .countDocuments({ category: item.category });
+      return { [item.category]: a };
     })
   );
 

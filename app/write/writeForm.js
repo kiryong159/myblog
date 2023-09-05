@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
 //글쓰기 form 페이지
@@ -10,16 +10,21 @@ export default function WriteForm({ category }) {
   const router = useRouter();
   const { register, handleSubmit, formState, getValues, setValue } = useForm();
   const [preImg, setPreImg] = useState();
+  const [awsFileName, setAwsFileName] = useState([]);
   const onClick = () => {
     return router.push("/");
   };
-
   const handleImgChange = async (event) => {
     const file = event.target.files[0];
     const fileName = Date.now() + "_" + file.name;
-    console.log("이미지파일", file);
+    const encodeName = encodeURIComponent(fileName);
+    setAwsFileName((prev) => {
+      return [...prev, fileName];
+    });
+
+    /*     console.log("이미지파일", file); */
     let presignedUrl = await (
-      await fetch(`/api/post/s3uploader?file=${fileName}`)
+      await fetch(`/api/post/s3uploader?file=${encodeName}`)
     ).json();
 
     //S3 업로드
@@ -31,10 +36,10 @@ export default function WriteForm({ category }) {
       method: "POST",
       body: formData,
     });
-    console.log(업로드결과);
+    /*  console.log(업로드결과); */
 
     if (업로드결과.ok) {
-      setPreImg(업로드결과.url + "/" + fileName);
+      setPreImg(업로드결과.url + "/" + encodeName);
     } else {
       console.log("실패");
     }
@@ -64,6 +69,7 @@ export default function WriteForm({ category }) {
         content: data.content,
         title: data.title,
         postAt: datenowUTC,
+        awsFileName: awsFileName,
       }),
     })
       .then((r) => r.json())
@@ -114,6 +120,98 @@ export default function WriteForm({ category }) {
               {formState.errors.content.message}
             </span>
           ) : null}
+          <button
+            type="button"
+            onClick={() => {
+              const currentContent = getValues("content") || "";
+              setValue("content", `${currentContent}# `);
+            }}
+          >
+            H1
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const currentContent = getValues("content") || "";
+              setValue("content", `${currentContent}## `);
+            }}
+          >
+            H2
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const currentContent = getValues("content") || "";
+              setValue("content", `${currentContent}### `);
+            }}
+          >
+            H3
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const currentContent = getValues("content") || "";
+              setValue("content", `${currentContent}#### `);
+            }}
+          >
+            H4
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const currentContent = getValues("content") || "";
+              setValue("content", currentContent + "**텍스트**");
+            }}
+          >
+            B
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const currentContent = getValues("content") || "";
+              setValue("content", currentContent + ">");
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const currentContent = getValues("content") || "";
+              setValue(
+                "content",
+                currentContent + "```javascript\n코드 내용\n```"
+              );
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"
+              />
+            </svg>
+          </button>
         </div>
 
         <textarea
