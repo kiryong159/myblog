@@ -13,7 +13,7 @@ export default function ThemeBtn({ isDark }) {
     } else {
       router.refresh();
     }
-  }, []);
+  }, [isDark]);
 
   const themeChange = () => {
     if (isDark === true) {

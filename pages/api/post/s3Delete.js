@@ -20,7 +20,7 @@ export const s3DeleteHandler = async (fileName) => {
 
   try {
     const response = await s3client.send(command);
-    console.log("ok", response);
+    console.log("s3Delete Photo -> ok");
   } catch (err) {
     console.error("에러", err);
   }

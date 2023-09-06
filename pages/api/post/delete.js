@@ -23,7 +23,7 @@ export default async function PostDeleteHandler(req, res) {
         s3DeleteHandler(item)
       );
     } else {
-      console.log("0임");
+      console.log("지울 사진이 0개임");
     }
   } else {
     //method !== "POST"

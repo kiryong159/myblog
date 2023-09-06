@@ -16,7 +16,6 @@ export default async function Category() {
       return { [item.category]: a };
     })
   );
-
   return (
     <div className="mt-5 grid grid-cols-2 p-3 gap-3 rounded-md ">
       {result.map((item) => {
@@ -33,8 +32,10 @@ export default async function Category() {
             {postCounts.find((obj) => obj[item.category] !== undefined)
               ? item.category === "All"
                 ? allCount.length
+                : postCounts.find((obj) => obj[item.category]) === undefined
+                ? 0
                 : postCounts.find((obj) => obj[item.category])[item.category]
-              : //리턴값이  { "NextJS": 11 } 이라서 [item.category] 한번더해줌
+              : //리턴값이  { "NextJS": 11 } 이라서 [item.category] 한번더해줌 + {React: 0}이면 obj[item.category] 부분에서 undefined 뜸
                 null}
             )
           </Link>

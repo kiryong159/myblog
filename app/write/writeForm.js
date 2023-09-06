@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 //글쓰기 form 페이지
@@ -113,7 +113,7 @@ export default function WriteForm({ category }) {
           type="text"
           className="p-1 px-3 my-2 mb-3  rounded-md  border-[1px] border-gray-700"
         />
-        <div className="flex space-x-5">
+        <div className="flex space-x-5 items-center">
           <label htmlFor="content">Content</label>
           {formState.errors.content ? (
             <span className="text-red-500 font-bold text-sm">
@@ -122,6 +122,7 @@ export default function WriteForm({ category }) {
           ) : null}
           <button
             type="button"
+            className="hover:bg-gray-300 rounded-md p-2 transition-all"
             onClick={() => {
               const currentContent = getValues("content") || "";
               setValue("content", `${currentContent}# `);
@@ -131,6 +132,7 @@ export default function WriteForm({ category }) {
           </button>
           <button
             type="button"
+            className="hover:bg-gray-300 rounded-md p-2 transition-all"
             onClick={() => {
               const currentContent = getValues("content") || "";
               setValue("content", `${currentContent}## `);
@@ -140,6 +142,7 @@ export default function WriteForm({ category }) {
           </button>
           <button
             type="button"
+            className="hover:bg-gray-300 rounded-md p-2 transition-all"
             onClick={() => {
               const currentContent = getValues("content") || "";
               setValue("content", `${currentContent}### `);
@@ -149,6 +152,7 @@ export default function WriteForm({ category }) {
           </button>
           <button
             type="button"
+            className="hover:bg-gray-300 rounded-md p-2 transition-all"
             onClick={() => {
               const currentContent = getValues("content") || "";
               setValue("content", `${currentContent}#### `);
@@ -158,6 +162,7 @@ export default function WriteForm({ category }) {
           </button>
           <button
             type="button"
+            className="hover:bg-gray-300 rounded-md p-2 transition-all"
             onClick={() => {
               const currentContent = getValues("content") || "";
               setValue("content", currentContent + "**텍스트**");
@@ -167,6 +172,7 @@ export default function WriteForm({ category }) {
           </button>
           <button
             type="button"
+            className="hover:bg-gray-300 rounded-md p-2 transition-all"
             onClick={() => {
               const currentContent = getValues("content") || "";
               setValue("content", currentContent + ">");
@@ -189,6 +195,7 @@ export default function WriteForm({ category }) {
           </button>
           <button
             type="button"
+            className="hover:bg-gray-300 rounded-md p-2 transition-all"
             onClick={() => {
               const currentContent = getValues("content") || "";
               setValue(
@@ -209,6 +216,29 @@ export default function WriteForm({ category }) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            className="hover:bg-gray-300 rounded-md p-2 transition-all"
+            onClick={() => {
+              const currentContent = getValues("content") || "";
+              setValue("content", currentContent + "[텍스트](url)");
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
               />
             </svg>
           </button>
