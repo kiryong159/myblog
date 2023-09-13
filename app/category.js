@@ -5,7 +5,7 @@ export default async function Category() {
   const db = (await connectDB).db("blog");
   const categories = await db.collection("category").find().toArray();
   const result = await db.collection("category").find().toArray();
-  /*   console.log(result); */
+
   const allCount = await db.collection("post").find().toArray();
 
   const postCounts = await Promise.all(

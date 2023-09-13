@@ -40,7 +40,8 @@ export default function ListMap({ result }) {
                 <span>{item.title}</span>
               </Link>
               <span className="text-gray-500 text-xs w-1/4 flex justify-end">
-                {formattedDate(item.postAt.toString())}
+                {/*  {formattedDate(item.postAt.toString())} */}
+                {item.postAt.slice(0, 10)}
               </span>
             </div>
           ))}

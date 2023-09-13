@@ -104,7 +104,7 @@ export default function PostEdit({ result, category, isDark }) {
                   {...register("content")}
                   id="content"
                   name="content"
-                  className="p-1 rounded-md px-3 my-2 h-60"
+                  className="p-1 rounded-md px-3 my-2 h-60 leading-normal"
                   defaultValue={result.content}
                 />
                 <div className="grid grid-cols-2 space-x-2 mt-3">

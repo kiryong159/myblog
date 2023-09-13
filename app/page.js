@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import Link from "next/link";
 import HomeBox from "./homeBox";
 
 export default function Home() {
@@ -105,3 +106,5 @@ nav bg-gray 500
 //글에 markdwon 추가해보기
 
 //프로필 ->이수한것들 적엉
+
+//nav에 사용자 표시

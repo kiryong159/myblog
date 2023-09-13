@@ -248,7 +248,7 @@ export default function WriteForm({ category }) {
           {...register("content", { required: "내용을 써주세요." })}
           id="content"
           name="content"
-          className="p-2 rounded-md px-3 my-2 h-56 border-[1px] border-gray-700"
+          className="p-2 rounded-md px-3 my-2 h-56 border-[1px] border-gray-700 leading-normal"
         />
 
         <div className="flex w-full mt-2">

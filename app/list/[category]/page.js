@@ -13,6 +13,7 @@ export default async function CategoryPage(prop) {
       item._id = item._id.toString();
       return item;
     });
+
     result = result.reverse();
   } else {
     result = await db.collection("post").find({ category: category }).toArray();
@@ -22,7 +23,6 @@ export default async function CategoryPage(prop) {
     });
     result = result.reverse();
   }
-
   return (
     <div className="p-5 space-y-3 h-[670px]">
       <h1 className="p-3 text-center font-bold text-2xl">{category}</h1>

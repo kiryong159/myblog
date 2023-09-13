@@ -183,6 +183,7 @@ table {
   border-left: 5px solid #a29bfe;
   margin: 16px 0px;
   width: 100%;
+  color: black;
 }
 
 .markdown img {
@@ -193,17 +194,29 @@ table {
 }
 
 .markdown a {
-  color: #847bfc;
+  color: #7bfca2;
   font-weight: bold;
 }
 .markdown a:hover {
-  color: #847bfc;
+  color: #7bfc7b;
   font-weight: bold;
   text-decoration: underline;
 }
-/* .markdown code {
-  font-size: 16px;
-  margin: 16px;
-  font-family: "Fira Mono", monospace;
+
+.markdown p {
+  margin: 5px 0px;
+  line-height: 1.5;
 }
- */
+
+.loader {
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -11,11 +11,10 @@ export default async function Comment({ postId, isDark }) {
     .collection("comment")
     .find({ parentId: postId })
     .toArray();
-  commentList._id = commentList.map((item) => {
+  commentList = commentList.map((item) => {
     item._id = item._id.toString();
     return item;
   });
-
   let session = await getServerSession(authOptions);
   let sessionEmail = session ? session.user.email : null;
 
