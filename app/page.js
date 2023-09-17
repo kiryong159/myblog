@@ -28,8 +28,8 @@ export default function Home() {
           isDark={isDark}
           name1="NEXT.js"
           name2="Tailwind CSS"
-          src1="https://i.namu.wiki/i/benNL9a8dR2OJgB-k4Dy7my7QKXO705Gt7bVk_chopoiAVwo5TTRprag2AbPQiH-uKREqi3euzMDpc8kHdtJKDV74y-RiklWytJyHCu5loVFmNtZIYNjEtAyv8_cSvvQuge0xmIA9797L8L28Q1QWg.svg"
-          src2="https://i.namu.wiki/i/Cz_00edwUtX87JieMgxVbsxX1WFBGtmq2Td9nKt9uFNMZ71_VGJen03fucR96_3AbF-ceNE-3VefwJkMI35oyMcpmOHCFECjfFb8RA5SoyhcjQKx-NdP1qOzc-Ef1O1qaA3CZUeKz_nn8jSet3oH_g.svg"
+          src1="https://myblog6779.s3.ap-northeast-2.amazonaws.com/NextJS.svg"
+          src2="https://myblog6779.s3.ap-northeast-2.amazonaws.com/tailwind.svg"
           link1="https://nextjs.org/docs"
           link2="https://tailwindcss.com/docs/installation"
         />
@@ -37,8 +37,8 @@ export default function Home() {
           isDark={isDark}
           name1="MongoDB"
           name2="Chat GPT"
-          src1="https://i.namu.wiki/i/xNULUQxFHCzb-N4HSyhd0KkTvsDOm5DAwwNhiN3YiWPEgJQetZdM95WPb_QBwNEowKhiCtst50h3OU7i1hLTqSy0DSE1OY_ADAM2OiPMzwuN3TdyxrKUf1zwM5OE6_53sLnCPYcCJEInhOiys_Vg1Q.svg"
-          src2="https://i.namu.wiki/i/2ASsR6beN06tqHTAnYl71itY5VZ9UUHGBtWLuXgZB2JHPTksS5-Awd1qNRGD6qxuHU5nJ12z1tggrC8CuiQitSc4_86rl-_DVBRQizBK1ll0K7FBGlg7DUZegiWDtOneq70SsKmw4IKvs7prFdDGzw.svg"
+          src1="https://myblog6779.s3.ap-northeast-2.amazonaws.com/MongoDB.svg"
+          src2="https://myblog6779.s3.ap-northeast-2.amazonaws.com/Chat+GPT.svg"
           link1="https://www.mongodb.com/ko-kr"
           link2="https://chat.openai.com/"
         />
@@ -46,8 +46,8 @@ export default function Home() {
           isDark={isDark}
           name1="Google"
           name2="AWS S3"
-          src1="https://i.namu.wiki/i/m2eT5RqpjVLwVJQuR_0khbHtRP77sNCMAP8IsN4q2sMC01bO-Cv3cjXrrF0hbxrg5RpVUP8tGUuYyUdfPlPgMmlEYBR1k3BBzY-uAgdQJZtPkCh6dMSWDvQkdfsNz1Y3MQFhC5REt4ac7aFe5Kg5cg.svg"
-          src2="https://i.namu.wiki/i/fDHACbsquBfLLZr2pTRD-nF7Hn2Fajd3MEFmtCXEtT2qz_76SDCA7X5RXadxzex2yc56RArgnhOB1nQiAUO-PBNqT5rH6Zz_k3nTFtiiK6Bc8fQQuWOofOWCxP-nYKi8CiE_MS5u6zDpYq3RlMRy5A.svg"
+          src1="https://myblog6779.s3.ap-northeast-2.amazonaws.com/Google.svg"
+          src2="https://myblog6779.s3.ap-northeast-2.amazonaws.com/AWS.svg"
           link1="https://www.google.co.kr/"
           link2="https://s3.console.aws.amazon.com/"
         />

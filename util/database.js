@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-/* const url =
+const url =
   "mongodb+srv://admin:1q2w3e4r@myblog.zqxpruc.mongodb.net/?retryWrites=true&w=majority";
 const options = { useNewUrlParser: true };
 let connectDB;
@@ -12,9 +12,10 @@ if (process.env.NODE_ENV === "development") {
 } else {
   connectDB = new MongoClient(url, options).connect();
 }
-export { connectDB }; */
-
+export { connectDB };
+/* 
 const url =
   "mongodb+srv://admin:1q2w3e4r@myblog.zqxpruc.mongodb.net/?retryWrites=true&w=majority";
 let connectDB = new MongoClient(url).connect();
 export { connectDB };
+ */
