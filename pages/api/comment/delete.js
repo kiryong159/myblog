@@ -2,7 +2,7 @@ import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
 
 export default async function CommentDelHandler(req, res) {
-  const db = (await connectDB).db("blog");
+  const db = await connectDB();
   if (req.method === "POST") {
     let result = await db
       .collection("comment")

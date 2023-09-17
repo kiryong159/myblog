@@ -3,7 +3,7 @@ import WriteForm from "./writeForm";
 
 //글쓰기 페이지
 export default async function WritePost() {
-  const db = (await connectDB).db("blog");
+  const db = await connectDB();
   let category = await db.collection("category").find().toArray();
   category = category.map((item) => item.category);
   const categoryList = category.slice(1);

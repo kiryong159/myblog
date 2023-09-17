@@ -6,7 +6,7 @@ import CommentWrite from "./CommentWrite";
 
 //댓글  작성 및 불러오는 곳
 export default async function Comment({ postId, isDark }) {
-  const db = (await connectDB).db("blog");
+  const db = await connectDB();
   let commentList = await db
     .collection("comment")
     .find({ parentId: postId })

@@ -2,7 +2,7 @@ import { connectDB } from "@/util/database";
 import Link from "next/link";
 
 export default async function Category() {
-  const db = (await connectDB).db("blog");
+  const db = await connectDB();
   const categories = await db.collection("category").find().toArray();
   const result = await db.collection("category").find().toArray();
 

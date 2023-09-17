@@ -5,7 +5,7 @@ import ListMap from "./listmap";
 // 글 목록 보이는 페이지
 export default async function CategoryPage(prop) {
   const category = prop.params.category;
-  const db = (await connectDB).db("blog");
+  const db = await connectDB();
   let result = null;
   if (category === "All") {
     result = await db.collection("post").find().toArray();

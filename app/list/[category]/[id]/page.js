@@ -13,11 +13,13 @@ import ViewContents from "./ViewContents";
 // 글 내용 보는 페이지
 export default async function PostDetail(prop) {
   const postId = prop.params.id;
-  const db = (await connectDB).db("blog");
+  const db = await connectDB();
   let result = await db
     .collection("post")
     .findOne({ _id: new ObjectId(postId) });
-  result._id = result._id.toString();
+  if (result) {
+    result._id = result._id.toString();
+  }
 
   let category = await db.collection("category").find().toArray();
   category = category.map((obj) => {

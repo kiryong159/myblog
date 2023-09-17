@@ -4,7 +4,7 @@ import { s3DeleteHandler } from "./s3Delete";
 
 export default async function PostDeleteHandler(req, res) {
   const postId = req.body;
-  const db = (await connectDB).db("blog");
+  const db = await connectDB();
   const postData = await db
     .collection("post")
     .findOne({ _id: new ObjectId(postId) });

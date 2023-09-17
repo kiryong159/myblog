@@ -2,7 +2,7 @@ import { connectDB } from "@/util/database";
 
 export default async function SearchHandler(req, res) {
   const keyword = req.body;
-  const db = (await connectDB).db("blog");
+  const db = await connectDB();
 
   if (req.method === "POST") {
     const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

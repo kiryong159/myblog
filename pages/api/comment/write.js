@@ -3,7 +3,7 @@ import { connectDB } from "@/util/database";
 export default async function CommentWriteHandler(req, res) {
   req.body = JSON.parse(req.body);
   if (req.body.comment === "") return res.status(500).json("no");
-  const db = (await connectDB).db("blog");
+  const db = await connectDB();
   if (req.method === "POST") {
     let result = await db.collection("comment").insertOne({
       author: req.body.author,
