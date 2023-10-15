@@ -25,7 +25,7 @@ export default async function CategoryPage(prop) {
   }
 
   return (
-    <div className="p-5 space-y-3 h-[670px]">
+    <div className="p-5 space-y-3 h-[770px] 2sm:h-[710px] sm:h-[670px]">
       <h1 className="p-3 text-center font-bold text-2xl">{category}</h1>
       <ListMap result={result} />
     </div>

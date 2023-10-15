@@ -12,6 +12,8 @@ export default function Search({ isDark }) {
   const { register, handleSubmit, formState, reset } = useForm();
   const [keyword, setKeyword] = useState("");
   const [contentResult, setContentResult] = useState([]);
+  const [Wwidth, setWwidth] = useState(false);
+
   const [titleResult, setTitleResult] = useState([]);
   const [resultState, setResultState] = useState(false);
 
@@ -19,6 +21,8 @@ export default function Search({ isDark }) {
   const [titlePage, setTitlePage] = useState([]);
   const [contentNowIndex, setContetnNowIndex] = useState(0);
   const [titleNowIndex, setTitleNowIndex] = useState(0);
+  const [CpageArrIndex, setCpageArrIndex] = useState(0);
+  const [TpageArrIndex, setTpageArrIndex] = useState(0);
 
   const onClick = () => {
     setIsSearch((prev) => !prev);
@@ -46,6 +50,8 @@ export default function Search({ isDark }) {
     setResultState(false);
     setContetnNowIndex(0);
     setTitleNowIndex(0);
+    setCpageArrIndex(0);
+    setTpageArrIndex(0);
   };
 
   const contentIndexChange = (item) => {
@@ -59,28 +65,61 @@ export default function Search({ isDark }) {
     setResultState(false);
     setContetnNowIndex(0);
     setTitleNowIndex(0);
+    setCpageArrIndex(0);
+    setTpageArrIndex(0);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 639) {
+        setWwidth(true);
+      }
+      if (window.innerWidth >= 640) {
+        setWwidth(false);
+      }
+    };
+    // resize 이벤트 리스너 등록
+    window.addEventListener("resize", handleResize);
+    // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const searchVars = {
-    initial: { opacity: 0, scale: 0, x: -180 },
-    visible: { opacity: 1, scale: 1, x: 0 },
-    exit: { opacity: 0, scale: 0, x: -180 },
+    initial: (Wwidth) => {
+      return { opacity: 0, scale: 0.5, x: Wwidth ? -180 : -280 };
+    },
+    visible: (Wwidth) => {
+      return {
+        opacity: 1,
+        scale: 1,
+        x: Wwidth ? -150 : -250,
+        transition: { delay: 0.5 },
+      };
+    },
+    exit: (Wwidth) => {
+      return { opacity: 0, scale: 0.5, x: Wwidth ? -180 : -280 };
+    },
   };
 
   const resultVars = {
-    initial: { opacity: 0, scale: 0, y: -400, x: -100 },
+    initial: { opacity: 0, scale: 0.5, y: -200, x: 0 },
     visible: { opacity: 1, scale: 1, y: 0, x: 0 },
-    exit: { opacity: 0, scale: 0, y: -400, x: -100 },
+    exit: { opacity: 0, scale: 0.5, y: -200, x: -0 },
   };
   const overlayVars = {
     initial: { opacity: 0, scale: 1, y: 0 },
     visible: { opacity: 0.3, scale: 1, y: 0 },
-    exit: { opacity: 0, scale: 0, y: -400, x: -200 },
+    exit: { opacity: 0, scale: 1, y: 0, x: 0 },
   };
 
   const offset = 5;
+  const pageOffset = 5;
   const contentMaxIndex = Math.ceil(contentResult.length / offset);
   const titleMaxIndex = Math.ceil(titleResult.length / offset);
+  const CMaxPage = Math.ceil(contentMaxIndex / pageOffset) - 1;
+  const TMaxPage = Math.ceil(titleMaxIndex / pageOffset) - 1;
 
   useEffect(() => {
     let newContentPage = [];
@@ -98,9 +137,37 @@ export default function Search({ isDark }) {
     setTitlePage(newTitleCount);
   }, [titleMaxIndex]);
 
+  const CpageArrMinus = () => {
+    setCpageArrIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  };
+  const CpageArrPlus = () => {
+    setCpageArrIndex((prev) => (prev === CMaxPage ? CMaxPage : prev + 1));
+  };
+  const TpageArrMinus = () => {
+    setTpageArrIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  };
+  const TpageArrPlus = () => {
+    setTpageArrIndex((prev) => (prev === TMaxPage ? TMaxPage : prev + 1));
+  };
+
+  const ResultBackBtn = () => {
+    setResultState(false);
+    setContetnNowIndex(0);
+    setTitleNowIndex(0);
+    setCpageArrIndex(0);
+    setTpageArrIndex(0);
+  };
+
   return (
-    <div className="flex items-center space-x-2">
-      <button onClick={onClick}>
+    <div className="relative flex items-center space-x-2">
+      <motion.button
+        onClick={onClick}
+        className={`relative transition-all duration-500  ${
+          isSearch
+            ? "right-[150px] sm:right-[250px] "
+            : "right-[0px]  sm:right-[0px] delay-500"
+        }`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -115,46 +182,53 @@ export default function Search({ isDark }) {
             d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
           />
         </svg>
-      </button>
+      </motion.button>
       <AnimatePresence>
         {isSearch ? (
           <motion.div
+            custom={Wwidth}
             variants={searchVars}
             initial="initial"
             animate="visible"
             exit="exit"
-            transition={{ duration: 0.5, type: "spring", bounce: 0.5 }}
-            className="flex space-x-2 items-center  "
+            transition={{
+              duration: 0.5,
+              type: "spring",
+              bounce: 0.5,
+            }}
+            className=" flex space-x-2 items-center  "
           >
-            <input
-              {...register("keyword", { required: "검색어를 입력하세요" })}
-              name="keyword"
-              type="text"
-              placeholder={
-                formState.errors.keyword === undefined
-                  ? "검색어를 입력하세요"
-                  : `${formState.errors.keyword.message}`
-              }
-              className="flex p-1  px-3 rounded-md shadow-md border-[1px] border-gray-700 text-black"
-            />
-            <button
-              className="text-xs font-bold p-1 px-4 rounded-md shadow-md transition-all text-black bg-purple-300 hover:bg-purple-400 hover:scale-105"
-              onClick={handleSubmit(onValid)}
-            >
-              검색
-            </button>
+            <form className="flex absolute w-[150px] sm:w-[250px]  space-x-1">
+              <input
+                {...register("keyword", { required: "검색어를 입력하세요" })}
+                name="keyword"
+                type="text"
+                placeholder={
+                  formState.errors.keyword === undefined
+                    ? "검색어를 입력하세요"
+                    : `${formState.errors.keyword.message}`
+                }
+                className="flex p-1  px-3 w-[80%] rounded-md shadow-md border-[1px] border-gray-700 text-black text-xs sm:text-base"
+              />
+              <button
+                className="w-[20%] text-xs font-bold rounded-md shadow-md transition-all text-black bg-purple-300 hover:bg-purple-400 hover:scale-105"
+                onClick={handleSubmit(onValid)}
+              >
+                검색
+              </button>
+            </form>
           </motion.div>
         ) : null}
       </AnimatePresence>
       <AnimatePresence>
         {resultState ? (
-          <>
+          <div className="">
             <motion.div
               variants={overlayVars}
               initial="initial"
               animate="visible"
               exit="exit"
-              className={` absolute h-screen w-[200vw] overflow-hidden  top-0 left-[-500px] z-50 cursor-pointer ${
+              className={` absolute h-[103vh] w-[200vw] overflow-hidden  top-[-3vh] left-[-100vw] z-50 cursor-pointer ${
                 isDark === true ? "bg-black" : "bg-gray-900"
               }`}
               onClick={overlayClick}
@@ -166,13 +240,13 @@ export default function Search({ isDark }) {
               animate="visible"
               exit="exit"
               transition={{ duration: 0.7, type: "spring", bounce: 0.5 }}
-              className={`absolute flex left-1/4 top-[70px]  space-y-3 flex-col p-3 rounded-md shadow-md h-[780px] max-w-3xl max-h-[780px] w-full  z-[60] ${
+              className={`absolute flex left-[-400px] sm:left-[-550px] md:left-[-650px] lg:left-[-800px] xl:left-[-700px] 2xl:left-[-800px] 3xl:left-[-1000px]  4xl:left-[-1200px] w-[450px] sm:w-[600px]  md:w-[700px] top-[70px] space-y-3 flex-col p-3 rounded-md shadow-md h-[780px] max-w-3xl max-h-[780px]  z-[60] ${
                 isDark === true ? "bg-gray-600 text-white" : "bg-white"
               }`}
             >
               <div className="flex items-center">
                 <div className="w-1/6">
-                  <button className="" onClick={() => setResultState(false)}>
+                  <button className="" onClick={ResultBackBtn}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -242,8 +316,78 @@ export default function Search({ isDark }) {
                     ))}
                 </div>
                 <div className="space-x-2 w-full flex justify-center h-[25px]">
-                  {titlePage.length !== 0
-                    ? titlePage.map((item) => (
+                  {titlePage.length !== 0 ? (
+                    titlePage.length > pageOffset ? (
+                      <>
+                        <button
+                          onClick={TpageArrMinus}
+                          className={`${
+                            TpageArrIndex === 0
+                              ? "cursor-default opacity-30 "
+                              : ""
+                          }`}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="w-5 h-5"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z"
+                            />
+                          </svg>
+                        </button>
+                        {titlePage
+                          .slice(
+                            TpageArrIndex * pageOffset,
+                            TpageArrIndex * pageOffset + pageOffset
+                          )
+                          .map((item) => (
+                            <button
+                              className={`p-1 rounded-md shadow-md w-8 transition-all ${
+                                titleNowIndex + 1 === Number(item)
+                                  ? "bg-purple-300 hover:cursor-default ring-2 ring-purple-300 ring-offset-2 "
+                                  : isDark
+                                  ? "bg-gray-400 hover:text-gray-700 hover:bg-gray-300 hover:scale-110"
+                                  : "bg-white hover:bg-gray-300 hover:scale-110 "
+                              }`}
+                              key={item}
+                              onClick={() => titleIndexChange(item)}
+                            >
+                              {item}
+                            </button>
+                          ))}
+                        <button
+                          onClick={TpageArrPlus}
+                          className={`${
+                            TpageArrIndex === TMaxPage
+                              ? "opacity-30 cursor-default"
+                              : ""
+                          }`}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="w-5 h-5"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z"
+                            />
+                          </svg>
+                        </button>
+                      </>
+                    ) : (
+                      titlePage.map((item) => (
                         <button
                           className={`p-1 rounded-md shadow-md w-8 transition-all ${
                             titleNowIndex + 1 === Number(item)
@@ -258,7 +402,8 @@ export default function Search({ isDark }) {
                           {item}
                         </button>
                       ))
-                    : null}
+                    )
+                  ) : null}
                 </div>
               </div>
               <div>
@@ -308,8 +453,78 @@ export default function Search({ isDark }) {
                     ))}
                 </div>
                 <div className="space-x-2 w-full flex justify-center h-[25px] ">
-                  {contentPage.length !== 0
-                    ? contentPage.map((item) => (
+                  {contentPage.length !== 0 ? (
+                    contentPage.length > pageOffset ? (
+                      <>
+                        <button
+                          onClick={CpageArrMinus}
+                          className={`${
+                            CpageArrIndex === 0
+                              ? "cursor-default opacity-30 "
+                              : ""
+                          }`}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="w-5 h-5"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z"
+                            />
+                          </svg>
+                        </button>
+                        {contentPage
+                          .slice(
+                            CpageArrIndex * pageOffset,
+                            CpageArrIndex * pageOffset + pageOffset
+                          )
+                          .map((item) => (
+                            <button
+                              key={item}
+                              onClick={() => contentIndexChange(item)}
+                              className={`p-1 rounded-md shadow-md w-8 transition-all ${
+                                contentNowIndex + 1 === Number(item)
+                                  ? "bg-purple-300 hover:cursor-default ring-2 ring-purple-300 ring-offset-2 "
+                                  : isDark
+                                  ? "bg-gray-400 hover:text-gray-700 hover:bg-gray-300 hover:scale-110"
+                                  : "bg-white hover:bg-gray-300 hover:scale-110 "
+                              }`}
+                            >
+                              {item}
+                            </button>
+                          ))}
+                        <button
+                          onClick={CpageArrPlus}
+                          className={`${
+                            CpageArrIndex === CMaxPage
+                              ? "opacity-30 cursor-default"
+                              : ""
+                          }`}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="w-5 h-5"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z"
+                            />
+                          </svg>
+                        </button>
+                      </>
+                    ) : (
+                      contentPage.map((item) => (
                         <button
                           key={item}
                           onClick={() => contentIndexChange(item)}
@@ -324,11 +539,12 @@ export default function Search({ isDark }) {
                           {item}
                         </button>
                       ))
-                    : null}
+                    )
+                  ) : null}
                 </div>
               </div>
             </motion.div>
-          </>
+          </div>
         ) : null}
       </AnimatePresence>
     </div>

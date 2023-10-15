@@ -20,6 +20,7 @@
     "multer": "^1.4.5-lts.1",
     "next": "13.4.13",
     "next-auth": "^4.21.1",
+    "node-cron": "^3.0.2",
     "postcss": "8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -27,6 +28,7 @@
     "react-hook-form": "^7.45.4",
     "react-markdown": "^8.0.7",
     "react-syntax-highlighter": "^15.5.0",
-    "tailwindcss": "3.3.3"
+    "tailwindcss": "3.3.3",
+    "typeit-react": "^2.6.4"
   }
 }

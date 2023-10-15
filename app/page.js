@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
-import Link from "next/link";
-import HomeBox from "./homeBox";
+import Calender from "./Calender";
+import ToDay from "./Today";
+import Watch from "./Watch";
+import Weather from "./Weather";
 
 export default function Home() {
   let cookie = cookies().get("isDark");
@@ -8,50 +10,11 @@ export default function Home() {
     cookie !== undefined ? (cookie.value === "true" ? true : false) : false;
 
   return (
-    <div className="w-full flex flex-col space-y-3  p-5 max-h-[670px] h-[670px]">
-      <h1
-        className={`p-1 font-bold text-center text-3xl ${
-          isDark ? "text-gray-100" : ""
-        }`}
-      >
-        HOME
-      </h1>
-      <h3
-        className={`p-1 text-center font-medium text-xl ${
-          isDark ? "text-gray-100" : ""
-        }`}
-      >
-        제작 도움
-      </h3>
-      <div className="w-full max-h-[520px] h-full flex flex-col space-y-5">
-        <HomeBox
-          isDark={isDark}
-          name1="NEXT.js"
-          name2="Tailwind CSS"
-          src1="https://myblog6779.s3.ap-northeast-2.amazonaws.com/NextJS.svg"
-          src2="https://myblog6779.s3.ap-northeast-2.amazonaws.com/tailwind.svg"
-          link1="https://nextjs.org/docs"
-          link2="https://tailwindcss.com/docs/installation"
-        />
-        <HomeBox
-          isDark={isDark}
-          name1="MongoDB"
-          name2="Chat GPT"
-          src1="https://myblog6779.s3.ap-northeast-2.amazonaws.com/MongoDB.svg"
-          src2="https://myblog6779.s3.ap-northeast-2.amazonaws.com/Chat+GPT.svg"
-          link1="https://www.mongodb.com/ko-kr"
-          link2="https://chat.openai.com/"
-        />
-        <HomeBox
-          isDark={isDark}
-          name1="Google"
-          name2="AWS S3"
-          src1="https://myblog6779.s3.ap-northeast-2.amazonaws.com/Google.svg"
-          src2="https://myblog6779.s3.ap-northeast-2.amazonaws.com/AWS.svg"
-          link1="https://www.google.co.kr/"
-          link2="https://s3.console.aws.amazon.com/"
-        />
-      </div>
+    <div className="w-full HomeGrid space-y-3  p-5  h-[800px]">
+      <ToDay isDark={isDark} />
+      <Watch isDark={isDark} />
+      <Weather isDark={isDark} />
+      <Calender isDark={isDark} />
     </div>
   );
 }

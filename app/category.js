@@ -1,13 +1,11 @@
 import { connectDB } from "@/util/database";
 import Link from "next/link";
 
-export default async function Category() {
+export default async function Category({ isDark }) {
   const db = (await connectDB).db("blog");
   const categories = await db.collection("category").find().toArray();
   const result = await db.collection("category").find().toArray();
-
   const allCount = await db.collection("post").find().toArray();
-
   const postCounts = await Promise.all(
     categories.map(async (item) => {
       let a = await db
@@ -17,15 +15,15 @@ export default async function Category() {
     })
   );
   return (
-    <div className="mt-5 grid grid-cols-2 p-3 gap-3 rounded-md ">
-      {result.map((item) => {
+    <div className="mt-5 grid text-center xl:grid-cols-2 p-3 gap-3 rounded-md">
+      {result?.map((item) => {
         item._id = item._id.toString();
         return (
           <Link
             href={{
               pathname: `/list/${item.category}`,
             }}
-            className="px-1 py-1 whitespace-nowrap text-base rounded-md font-bold hover:bg-gray-200 hover:text-purple-500 transition-all "
+            className="px-1 py-1 w-full whitespace-nowrap text-base rounded-md font-bold hover:bg-gray-200 hover:text-purple-500 transition-all "
             key={item._id}
           >
             {item.category} (

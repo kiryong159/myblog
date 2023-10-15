@@ -8,6 +8,10 @@ import Search from "./search";
 import ThemeBtn from "./ThemeBtn";
 import { cookies } from "next/headers";
 import HomeBtn from "./HomeBtn";
+import Info from "./Info";
+import Menu from "./Menu";
+import VisitorCounter from "./VisitorCounter";
+
 export default async function Nav({ child }) {
   let session = await getServerSession(authOptions);
   let admin = session
@@ -19,6 +23,9 @@ export default async function Nav({ child }) {
   let cookie = cookies().get("isDark");
   let isDark =
     cookie !== undefined ? (cookie.value === "true" ? true : false) : "no";
+  let visitedCookie = cookies().get("visited");
+  let visited = visitedCookie !== undefined ? true : false;
+
   return (
     <div
       className={`flex flex-col  w-[100vw]   fixed top-0 left-0 right-0  h-full NavScrollBar overflow-x-hidden ${
@@ -26,50 +33,59 @@ export default async function Nav({ child }) {
       }`}
     >
       <div
-        className={`fixed z-10 top-0 flex items-center shadow-md rounded-md  h-[70px] w-[81.5%]  p-4 px-10  space-x-3 left-[9%] ${
+        className={`fixed z-10 top-0 flex justify-between items-center shadow-md rounded-md  h-[70px] w-[99.3%] xl:w-[81.5%]  p-4 px-10 left-0 xl:left-[9%] ${
           isDark === true ? "bg-gray-500 text-gray-100" : "bg-white"
         }`}
       >
-        <Link href={"/"}>
-          <HomeBtn />
-        </Link>
-        {session ? <LogOutBtn /> : <LogInBtn />}
-        {admin ? (
-          <Link href="/write" className="flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-4 h-4"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-              />
-            </svg>
-            <span>글쓰기</span>
+        <div className="flex space-x-3 ">
+          <Link href={"/"}>
+            <HomeBtn />
           </Link>
-        ) : null}
-        <ThemeBtn isDark={isDark} />
+          <div className="flex justify-center items-center">
+            {/* space x-3을 피하기위한 div */}
+            <Menu isDark={isDark} />
+          </div>
+
+          {admin ? (
+            <Link href="/write" className="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                />
+              </svg>
+              <span>글쓰기</span>
+            </Link>
+          ) : null}
+          {session ? <LogOutBtn /> : <LogInBtn />}
+          <ThemeBtn isDark={isDark} />
+        </div>
         <Search isDark={isDark} />
       </div>
-      <div className="relative left-[10%] flex mt-[75px]  ">
+      <div className="relative left-0 md:left-[2%] xl:left-[10%] flex mt-[75px]  ">
         <div
-          className={`  w-1/5 ${
+          className={`hidden md:flex md:w-1/6  xl:w-1/5 ${
             isDark === true ? "bg-gray-700 text-white" : "bg-white"
           }`}
         >
-          <div className="fixed w-1/5">
-            <div className="h-40 bg-yellow-500 rounded-md">프로필</div>
+          <div className="fixed md:w-1/6 xl:w-1/5">
+            <Info isDark={isDark} />
             <div className="border-b border-gray-400  border-solid m-1" />
-            <Category />
+            <Category isDark={isDark} />
+            <div className="border-b border-gray-400  border-solid m-1" />
+            <VisitorCounter isDark={isDark} visited={visited} />
           </div>
         </div>
         <div
-          className={`w-3/5  rounded-md  shadow-md ${
+          className={`w-full md:w-[79%] xl:w-3/5  rounded-md  shadow-md ${
             isDark === true ? "bg-gray-500" : "bg-white"
           }`}
         >
@@ -118,3 +134,72 @@ export default async function Nav({ child }) {
   }
 }
  */
+
+/* div 원문
+
+
+
+
+*/
+
+/*  grid 연습
+    <div
+      className={`NavGrid NavScrollBar overflow-x-hidden ${
+        isDark === true ? "bg-gray-700" : "bg-white"
+      }`}
+    >
+      <div className="a" />
+      <div
+        className={`nav flex items-center space-x-2 px-10 shadow-md rounded-md  ${
+          isDark === true ? "bg-gray-500 text-gray-100" : "bg-white"
+        }`}
+      >
+        <Link href={"/"}>
+          <HomeBtn />
+        </Link>
+        {session ? <LogOutBtn /> : <LogInBtn />}
+        {admin ? (
+          <Link href="/write" className="flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+              />
+            </svg>
+            <span>글쓰기</span>
+          </Link>
+        ) : null}
+        <ThemeBtn isDark={isDark} />
+        <Search isDark={isDark} />
+      </div>
+      <div className="b" />
+      <div className="a" />
+      <div
+        className={` cate  mt-3 ${
+          isDark === true ? "bg-gray-700 text-white" : "bg-white"
+        }`}
+      >
+        <div className="">
+          <Info />
+          <div className="border-b border-gray-400  border-solid m-1" />
+          <Category />
+        </div>
+      </div>
+      <div
+        className={`post mt-3 mx-1 rounded-md  shadow-md ${
+          isDark === true ? "bg-gray-500" : "bg-white"
+        }`}
+      >
+        {child}
+      </div>
+      <div className="b" />
+    </div>
+*/
