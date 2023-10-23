@@ -33,7 +33,7 @@ export default function HomeBox({
             height={90}
           />
         </Link>
-        <span className="flex h-1/4 p-1 items-center justify-center font-bold 4sm:text-lg 5sm:text-[15px]">
+        <span className="flex h-1/4 p-1 items-center justify-center font-bold text-lg">
           {name1}
         </span>
       </div>
@@ -58,7 +58,7 @@ export default function HomeBox({
             height={90}
           />
         </Link>
-        <span className="flex h-1/4 p-1 items-center justify-center font-bold  5sm:text-[15px] 4sm:text-lg">
+        <span className="flex h-1/4 p-1 items-center justify-center font-bold text-lg ">
           {name2}
         </span>
       </div>

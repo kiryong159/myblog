@@ -2,18 +2,20 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+// 방문자 쿠키 확인후 ok-> 통과 / no-> 쿠키생성(1일) 후 fetch
+
 export default function VisitorCounterClient({ visited }) {
   const router = useRouter();
   useEffect(() => {
     if (visited) {
       return router.refresh();
-    } else if (visited !== undefined) {
+    } else if (!visited && visited !== undefined) {
       async function fetchVisited() {
-        await fetch("/api/visit", { method: "POST" });
+        await fetch("/api/visit", { method: "POST" }).then((r) => r.json());
       }
-      document.cookie = "visited=true; max-age=84600";
+      document.cookie = "visited=true; path=/; max-age=86400";
       fetchVisited();
-      return router.refresh();
+      router.refresh();
     }
   }, []);
 }

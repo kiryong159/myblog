@@ -2,6 +2,8 @@ import { cookies } from "next/headers";
 
 import ProfileDetail from "./ProfileDetail";
 
+// 프로필 페이지 쿠키 설정
+
 export default function Profile() {
   let cookie = cookies().get("isDark");
   let isDark =

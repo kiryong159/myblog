@@ -1,21 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function middleware(request) {
-  /*   const has = request.cookies.has("visited");
-  if (has) {
-    return NextResponse.next();
-  } else {
-    await fetch("/pages/api/visit", { method: "POST" });
-    const response = NextResponse.next();
-    response.cookies.set({
-      name: "visited",
-      value: "1",
-      maxAge: 84600,
-      httpOnly: true,
-    });
-    return response;
-  } */
-}
+export async function middleware(request) {}
 
 /*
 fetch왜안되 ㅅㅂ

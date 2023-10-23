@@ -61,11 +61,11 @@ export default function CommentEdit({ commentData }) {
             initial="initial"
             animate="visible"
             exit="exit"
-            className="p-3 px-5 absolute left-[10%] top-0 bg-purple-300 rounded-md space-y-3 z-10 w-full max-w-xl"
+            className="p-1 px-3 sm:p-3 absolute 5sm:left-[7%] 2sm:left-[5%] md:left-[5%] lg:left-[10%]  2xl:left-[17%] 3xl:left-[25%] 4xl:left-[30%] w-[210px] 4sm:w-[260px] 3sm:w-[310px]  2sm:w-[435px] sm:w-[525px] md:w-[475px] lg:w-[600px] top-0 bg-purple-100 rounded-md space-y-1 sm:space-y-3 z-10 "
           >
             <h4 className=" text-center text-xl font-bold">댓글 수정</h4>
             <form
-              className="flex  items-center space-x-3 "
+              className="flex  items-center md:space-x-3 5sm:flex-col md:flex-row "
               onSubmit={handleSubmit(onValid)}
             >
               <textarea
@@ -76,13 +76,13 @@ export default function CommentEdit({ commentData }) {
                 defaultValue={commentData.comment}
                 className="w-full shadow-md p-2 text-sm h-16 rounded-md"
               ></textarea>
-              <div className="flex flex-col items-center w-1/4">
+              <div className="flex flex-col items-center w-full mt-2 md:w-1/4 md:mt-0">
                 {formState.errors.comment ? (
-                  <div className="w-full p-1 text-center text-red-500 text-xs font-bold">
+                  <div className="w-full text-center text-red-500 text-xs font-bold">
                     {formState.errors.comment.message}
                   </div>
                 ) : null}
-                <div className="grid grid-cols-2 space-x-2 mt-3">
+                <div className="grid grid-cols-2 space-x-2 mt-2 md:mt-3 w-full">
                   <button
                     className="bg-red-300 rounded-md p-1 shadow-md font-bold w-full  transition-all hover:bg-red-400 hover:scale-110"
                     type="button"

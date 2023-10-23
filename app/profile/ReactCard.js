@@ -3,8 +3,8 @@ import Link from "next/link";
 export default function ReactCard() {
   return (
     <>
-      <h1 className="text-2xl">React</h1>
-      <ul className="pl-4 leading-relaxed">
+      <h1 className="text-[15px]  2sm:text-2xl">React</h1>
+      <ul className="pl-4 leading-relaxed text-[12px] 2sm:text-[16px]">
         <li>
           React로 영화 웹 서비스 만들기 (
           <Link

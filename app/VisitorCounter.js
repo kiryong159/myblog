@@ -3,6 +3,8 @@ import { ObjectId } from "mongodb";
 var cron = require("node-cron");
 import VisitorCounterClient from "./VisitorCounterClient";
 
+// 방문자 db 카운트 올리는 함수  및 cron으로 매일 자정 today 카운트 0으로 만드는 함수 실행시킴
+
 export default async function VisitorCounter({ isDark, visited }) {
   const db = (await connectDB).db("blog");
   let TodayCounter = await db
@@ -30,13 +32,14 @@ export default async function VisitorCounter({ isDark, visited }) {
           isDark ? "bg-gray-400" : "bg-purple-50"
         }`}
       >
+        {/* 여기 수정하면 Menu에서도 수정 해줘야함 */}
         <div className="space-x-2">
           <span>Today :</span>
-          <span>{TodayCounter.today}12356</span>
+          <span>{TodayCounter ? TodayCounter.today : 0}</span>
         </div>
         <div className="space-x-2">
           <span>Total :</span>
-          <span>{TotalCounter.total}123456</span>
+          <span>{TotalCounter ? TotalCounter.total : 0}</span>
         </div>
       </div>
     </>

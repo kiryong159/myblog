@@ -1,5 +1,6 @@
 "use client";
 
+//Home 달력 부분
 import { useEffect, useState } from "react";
 
 export default function Calender({ isDark }) {
@@ -30,8 +31,8 @@ export default function Calender({ isDark }) {
   const currentLDate = current마지막날.getDate();
   const currentLDays = current마지막날.getDay();
 
-  console.log("지난달Date", prevLDate, "Days", prevLDays);
-  console.log("이번달Date", currentLDate, "Days", currentLDays);
+  /*   console.log("지난달Date", prevLDate, "Days", prevLDays);
+  console.log("이번달Date", currentLDate, "Days", currentLDays); */
 
   let prevCalender = [];
   for (let i = prevLDays === 6 ? -1 : prevLDays; i >= 0; i--) {
@@ -70,7 +71,7 @@ export default function Calender({ isDark }) {
         isDark ? "bg-gray-400 text-white" : "bg-purple-50"
       } `}
     >
-      <div className="flex justify-between items-center h-[15%] px-16 ">
+      <div className="flex justify-between items-center h-[15%] px-5 md:px-16 ">
         <button
           className={`hover:scale-125 transition-all ${
             isDark ? "DArrwBtn" : "ArrwBtn"
@@ -83,7 +84,7 @@ export default function Calender({ isDark }) {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-4 h-4 md:w-6 md:h-6"
           >
             <path
               strokeLinecap="round"
@@ -107,7 +108,7 @@ export default function Calender({ isDark }) {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-4 h-4 md:w-6 md:h-6"
           >
             <path
               strokeLinecap="round"
@@ -136,8 +137,8 @@ export default function Calender({ isDark }) {
               todayCheck
                 ? item === dateCheck
                   ? isDark
-                    ? " bg-gray-300"
-                    : " bg-purple-200"
+                    ? " bg-gray-300 font-bold"
+                    : " bg-purple-200 font-bold"
                   : ""
                 : ""
             }`}

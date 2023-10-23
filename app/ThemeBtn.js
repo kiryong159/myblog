@@ -8,19 +8,19 @@ export default function ThemeBtn({ isDark }) {
   useEffect(() => {
     console.log("useeffect isDark?", isDark);
     if (isDark === "no") {
-      document.cookie = "isDark=false; max-age-864000";
+      document.cookie = "isDark=false; path=/; max-age-864000";
       router.refresh();
     } else {
       router.refresh();
     }
-  }, [isDark]);
+  }, []);
 
   const themeChange = () => {
     if (isDark === true) {
-      document.cookie = "isDark=false; max-age-864000";
+      document.cookie = "isDark=false; path=/; max-age-864000";
       router.refresh();
     } else if (isDark === false) {
-      document.cookie = "isDark=true; max-age-864000";
+      document.cookie = "isDark=true; path=/; max-age-864000";
       router.refresh();
     }
     //쿠키값 확인후 교체?

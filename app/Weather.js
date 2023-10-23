@@ -31,7 +31,7 @@ export default function Weather({ isDark }) {
 
   return (
     <div
-      className={`HomeC shadow-md rounded-md ml-2 ${
+      className={`HomeC shadow-md rounded-md  ${
         isDark ? "bg-gray-400 text-gray-100" : "bg-purple-50"
       }`}
     >
@@ -54,8 +54,7 @@ export default function Weather({ isDark }) {
                   repeatDelay: 1,
                 }}
                 className="rounded-md"
-                /* src={`https://openweathermap.org/img/wn/${WeatherData.weather[0].icon}@2x.png`} */
-                src={`https://openweathermap.org/img/wn/03n@2x.png`}
+                src={`https://openweathermap.org/img/wn/${WeatherData.weather[0].icon}@2x.png`}
                 width={100}
                 height={100}
                 alt="Weather Icon"
@@ -72,7 +71,7 @@ export default function Weather({ isDark }) {
               </div>
               <div className="flex space-x-2 justify-center items-center">
                 <span
-                  className={`relative top-[2px] text-[14px] ${
+                  className={`relative top-[2px] text-[11px] 3sm:text-[14px] ${
                     isDark ? "text-gray-200" : "text-gray-500"
                   }`}
                 >
@@ -84,7 +83,7 @@ export default function Weather({ isDark }) {
               </div>
               <div className="flex space-x-1 justify-center items-center">
                 <span
-                  className={`relative top-[2px] text-[14px] ${
+                  className={`relative top-[2px] text-[11px]  3sm:text-[14px] ${
                     isDark ? "text-gray-200" : "text-gray-500"
                   }`}
                 >

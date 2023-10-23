@@ -1,7 +1,10 @@
 import { connectDB } from "@/util/database";
+import { ObjectId } from "mongodb";
 import MenuClient from "./MenuClinet";
 
-export default async function Menu({ isDark }) {
+//화면 768이하 에서 생기는 메뉴 에 필요한 DB정보
+
+export default async function Menu({ isDark, session, admin }) {
   const db = (await connectDB).db("blog");
   let category = await db.collection("category").find().toArray();
   const AllpostCount = await db.collection("post").countDocuments();
@@ -21,9 +24,24 @@ export default async function Menu({ isDark }) {
 
   postCount.find((item) => "All" in item)["All"] = AllpostCount;
 
+  let TodayCount = await db
+    .collection("visit")
+    .findOne({ _id: new ObjectId("652a0ca7b7ad404412898ce5") });
+
+  let TotalCount = await db
+    .collection("visit")
+    .findOne({ _id: new ObjectId("652a0cb9b7ad404412898ce6") });
+
   return (
     <>
-      <MenuClient postCount={postCount} isDark={isDark} />
+      <MenuClient
+        session={session}
+        admin={admin}
+        postCount={postCount}
+        isDark={isDark}
+        TodayCount={TodayCount.today}
+        TotalCount={TotalCount.total}
+      />
     </>
   );
 }

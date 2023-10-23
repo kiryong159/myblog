@@ -160,6 +160,38 @@ li {
   border-radius: 10px;
 }
 
+.SearchScroll {
+  overflow-y: scroll;
+}
+.SearchScroll::-webkit-scrollbar {
+  width: 5px;
+}
+.SearchScroll::-webkit-scrollbar-thumb {
+  background-color: #a29bfe;
+  border-radius: 10px;
+}
+.SearchScroll::-webkit-scrollbar-track {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+.MenuScroll {
+  overflow-y: scroll;
+}
+.MenuScroll::-webkit-scrollbar {
+  width: 3px;
+}
+.MenuScroll::-webkit-scrollbar-thumb {
+  background-color: #a29bfe;
+  border-radius: 10px;
+}
+.MenuScroll::-webkit-scrollbar-track {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
 .markdown h1 {
   font-size: 40px;
   margin: 16px;
@@ -259,6 +291,14 @@ li {
   background-position: center center;
 }
 
+/* 서치 height 계산 */
+.SearchHeightCalc {
+  height: calc(100vh - 100px);
+}
+.MenuHeightCalc {
+  height: calc(100vh - 100px);
+}
+
 /* 그리드 연습 */
 .NavGrid {
   display: grid;
@@ -305,16 +345,6 @@ li {
 
 /* 홈 그리드 */
 
-.HomeGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 2fr 5fr;
-  grid-template-areas:
-    "HomeA HomeA"
-    "HomeB HomeC"
-    "HomeD HomeD";
-}
-
 .HomeA {
   grid-area: HomeA;
 }
@@ -326,6 +356,73 @@ li {
 }
 .HomeD {
   grid-area: HomeD;
+}
+
+@media (max-width: 640px) {
+  .HomeGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 3fr 5fr;
+    grid-template-areas:
+      "HomeA"
+      "HomeC"
+      "HomeB"
+      "HomeD"; /* 640px 이하 */
+  }
+}
+
+@media (min-width: 641px) {
+  .HomeGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr 5fr;
+    grid-template-areas:
+      "HomeA HomeA"
+      "HomeB HomeC"
+      "HomeD HomeD"; /* 641px 이상 */
+  }
+  .HomeB {
+    margin-right: 5px;
+  }
+  .HomeC {
+    margin-left: 5px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .HomeGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 3fr 5fr;
+    grid-template-areas:
+      "HomeA"
+      "HomeC"
+      "HomeB"
+      "HomeD"; /* 768px~900px */
+  }
+  .HomeB {
+    margin-right: 0px;
+  }
+  .HomeC {
+    margin-left: 0px;
+  }
+}
+@media (min-width: 901px) {
+  .HomeGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr 5fr;
+    grid-template-areas:
+      "HomeA HomeA"
+      "HomeB HomeC"
+      "HomeD HomeD"; /* 901px 이상 */
+  }
+  .HomeB {
+    margin-right: 5px;
+  }
+  .HomeC {
+    margin-left: 5px;
+  }
 }
 
 /* 날씨 그리드 */

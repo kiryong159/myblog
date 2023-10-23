@@ -71,7 +71,7 @@ export default function Watch({ isDark }) {
 
   return (
     <div
-      className={`HomeB flex  items-center justify-center rounded-md shadow-md mr-2 overflow-hidden ${
+      className={`HomeB flex  items-center justify-center rounded-md shadow-md overflow-hidden ${
         isDark ? "bg-gray-400 text-white " : "bg-purple-50 text-black"
       }`}
     >

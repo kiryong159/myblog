@@ -1,6 +1,8 @@
 import { connectDB } from "@/util/database";
 import Link from "next/link";
 
+//카테고리 뿌려주는 곳
+
 export default async function Category({ isDark }) {
   const db = (await connectDB).db("blog");
   const categories = await db.collection("category").find().toArray();
@@ -23,7 +25,7 @@ export default async function Category({ isDark }) {
             href={{
               pathname: `/list/${item.category}`,
             }}
-            className="px-1 py-1 w-full whitespace-nowrap text-base rounded-md font-bold hover:bg-gray-200 hover:text-purple-500 transition-all "
+            className="px-1 py-1 w-[90%] text-[15px] lg:text-[16px] lg:w-full whitespace-nowrap text-base rounded-md font-bold hover:bg-gray-200 hover:text-purple-500 transition-all "
             key={item._id}
           >
             {item.category} (

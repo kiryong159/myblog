@@ -3,8 +3,8 @@ import Link from "next/link";
 export default function HtmlCssCard() {
   return (
     <>
-      <h1 className="text-2xl">HTML , CSS 기초</h1>
-      <ul className="pl-4 leading-relaxed">
+      <h1 className="text-[15px]  2sm:text-2xl">HTML , CSS 기초</h1>
+      <ul className="pl-4 leading-relaxed text-[12px] 2sm:text-[16px]">
         <li>
           코코아톡 클론코딩 (
           <Link

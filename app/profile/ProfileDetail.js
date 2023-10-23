@@ -9,6 +9,8 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 
+//프로필 페이지
+
 export default function ProfileDetail({ isDark }) {
   const ref = useRef(null);
   const ref2 = useRef(null);
@@ -30,7 +32,7 @@ export default function ProfileDetail({ isDark }) {
   const isInView7 = useInView(ref7, { amount: 0.3, once: true });
   const isInView8 = useInView(ref8, { amount: 0.3, once: true });
   const isInView9 = useInView(ref9, { amount: 0.3, once: true });
-  const isInView10 = useInView(ref10, { amount: 0.3, once: true });
+  const isInView10 = useInView(ref10, { amount: 0.4, once: true });
   return (
     <>
       <h1
@@ -53,14 +55,14 @@ export default function ProfileDetail({ isDark }) {
           ></path>
         </svg>
       </div>
-      <div className="flex flex-col w-full bg-white h-58 p-5 space-y-2 shadow-md rounded-md">
+      <div className="flex flex-col w-full bg-white h-58 p-5 space-y-2 shadow-md rounded-md text-[14px] 2sm:text-[16px]">
         <ul className="p-5 space-y-2">
           <li>박기룡(1993.01.01)</li>
           <li>한마디 : 모르면 검색하자 </li>
           <li>장점 : 검색을 잘함</li>
           <li>단점 : 미적 감각이 없음</li>
           <li>2022.10.25 코딩 공부 시작</li>
-          <li>GitHub : https://github.com/kiryong159 (별거없음)</li>
+          <li>GitHub : https://github.com/kiryong159</li>
         </ul>
       </div>
       <h1
@@ -73,7 +75,7 @@ export default function ProfileDetail({ isDark }) {
       {/* 카드1 */}
       <div
         ref={ref}
-        className={`GradientBox flex w-full items-center h-[400px] sm:h-[350px] p-5 sm:px-8 mt-16 rounded-md transition-all duration-[1.0s] ${
+        className={`GradientBox flex w-full items-center h-[400px] sm:h-[350px] p-1 2sm:p-5 sm:px-8 mt-12  rounded-md transition-all duration-[1.0s] ${
           isInView ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -94,7 +96,7 @@ export default function ProfileDetail({ isDark }) {
       {/* 카드2 */}
       <div
         ref={ref2}
-        className={`GradientBox flex w-full items-center h-[400px] sm:h-[350px] p-5 sm:px-8 mt-16 rounded-md  transition-all duration-[1s] ${
+        className={`GradientBox flex w-full items-center h-[400px] sm:h-[350px] p-1 2sm:p-5 sm:px-8 mt-16 rounded-md  transition-all duration-[1s] ${
           isInView2 ? "opacity-100 translate-y-0 " : "opacity-0 translate-y-8 "
         }`}
       >
@@ -113,7 +115,7 @@ export default function ProfileDetail({ isDark }) {
       {/* 카드 3 */}
       <div
         ref={ref3}
-        className={`GradientBox flex w-full items-center h-[400px] md:h-[400px] lg:h-[350px] p-4 sm:px-8 mt-16 rounded-md  transition-all duration-[1s] ${
+        className={`GradientBox flex w-full items-center h-[400px] md:h-[400px] lg:h-[350px] p-1 2sm:p-4 sm:px-8 mt-16 rounded-md  transition-all duration-[1s] ${
           isInView3 ? "opacity-100 translate-y-0 " : "opacity-0 translate-y-8 "
         }`}
       >
@@ -137,7 +139,7 @@ export default function ProfileDetail({ isDark }) {
       {/* 카드 4 */}
       <div
         ref={ref4}
-        className={`GradientBox flex w-full items-center h-[350px] p-5 px-8 mt-16 rounded-md transition-all duration-[1s] ${
+        className={`GradientBox flex w-full items-center h-[350px] p-1 2sm:p-5 px-8 mt-16 rounded-md transition-all duration-[1s] ${
           isInView4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
@@ -164,7 +166,7 @@ export default function ProfileDetail({ isDark }) {
         <h3
           ref={ref6}
           className={`text-2xl mb-10 transition-all duration-[1s]  ${
-            isInView6 ? "opacity-100 translate-x-0" : "opacity-0 translate-x-60"
+            isInView6 ? "opacity-100 translate-x-0" : "opacity-0 translate-x-40"
           }`}
         >
           기타 정보
@@ -175,7 +177,7 @@ export default function ProfileDetail({ isDark }) {
             className={`block transition-all duration-[1s]  ${
               isInView7
                 ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-60"
+                : "opacity-0 translate-x-40"
             }`}
           >
             Node.js / express 사용 경험 은 있음 (
@@ -193,7 +195,7 @@ export default function ProfileDetail({ isDark }) {
             className={`block transition-all duration-[1s]  ${
               isInView8
                 ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-60"
+                : "opacity-0 translate-x-40"
             }`}
           >
             Fly.io 를 통해 Deploy 했었음. (
@@ -211,7 +213,7 @@ export default function ProfileDetail({ isDark }) {
             className={`block transition-all duration-[1s]  ${
               isInView9
                 ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-60"
+                : "opacity-0 translate-x-40"
             }`}
           >
             그냥 길게 보이고 싶음
@@ -221,7 +223,7 @@ export default function ProfileDetail({ isDark }) {
             className={`block transition-all duration-[1s]  ${
               isInView10
                 ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-60"
+                : "opacity-0 translate-x-40"
             }`}
           >
             아이스 아메리카노 주세요

@@ -4,13 +4,15 @@ import ToDay from "./Today";
 import Watch from "./Watch";
 import Weather from "./Weather";
 
+// 메인 홈 화면
+
 export default function Home() {
   let cookie = cookies().get("isDark");
   const isDark =
     cookie !== undefined ? (cookie.value === "true" ? true : false) : false;
 
   return (
-    <div className="w-full HomeGrid space-y-3  p-5  h-[800px]">
+    <div className="w-full HomeGrid space-y-3 p-5  h-[800px]">
       <ToDay isDark={isDark} />
       <Watch isDark={isDark} />
       <Weather isDark={isDark} />

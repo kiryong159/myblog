@@ -25,14 +25,16 @@ export default async function Comment({ postId, isDark }) {
       }`}
     >
       {session ? (
+        /* 댓글 작성 창 */
         <CommentWrite
           postId={postId}
           author={session.user.name}
           email={session.user.email}
         />
       ) : (
-        <div className="p-2 text-center font-bold">
-          로그인 한 유저만 댓글 작성이 가능합니다.
+        <div className="grid grid-rows-2 3sm:flex  p-2 text-center justify-center items-center font-bold">
+          <span>로그인 한 유저만 </span>
+          <span>댓글 작성이 가능합니다.</span>
         </div>
       )}
 
@@ -40,6 +42,7 @@ export default async function Comment({ postId, isDark }) {
         <div className="p-2 text-center font-bold">작성된 댓글이 없습니다.</div>
       ) : (
         <div className="max-h-80 commentScrollBar space-y-3 min-h-[100px]">
+          {/* 댓글 보여주는 창 */}
           {commentList.map((item) => (
             <CommentBox
               key={item._id}

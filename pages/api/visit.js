@@ -1,6 +1,8 @@
 import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
 
+// DB 방문자수 업데이트
+
 export default async function visitApi(req, res) {
   const db = (await connectDB).db("blog");
   let TodayUpadate = db.collection("visit").updateOne(
@@ -15,5 +17,5 @@ export default async function visitApi(req, res) {
       $inc: { total: 1 },
     }
   );
-  return res.status(200);
+  return res.status(200).json("ok");
 }

@@ -4,6 +4,8 @@ import Link from "next/link";
 import formattedDate from "@/util/formatDate";
 import { useEffect, useState } from "react";
 
+// 글 데이터 를 map 하는 곳
+
 export default function ListMap({ result }) {
   const [페이지저장소, set페이지저장소] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
@@ -32,8 +34,6 @@ export default function ListMap({ result }) {
     setPageArrIndex((prev) => (prev === MaxPage ? MaxPage : prev + 1));
   };
 
-  //페이지 0 1 2 ? maxpage ceil 존재여부?
-
   return (
     <div className="">
       <div className="h-[630px] 2sm:h-[570px] sm:h-[530px] space-y-3">
@@ -45,13 +45,17 @@ export default function ListMap({ result }) {
               className="flex justify-between font-bold bg-gray-100 shadow-md w-full rounded-md p-3 hover:bg-gray-200 hover:text-purple-500 transition-all"
             >
               <Link
-                className="flex space-x-5 w-3/4"
+                className="flex items-center space-x-1 2sm:space-x-5 w-3/4"
                 href={`/list/${item.category}/${item._id}`}
               >
-                <span className="text-xs text-gray-500">({item.category})</span>
-                <span>{item.title}</span>
+                <span className="text-[9px] 2sm:text-xs text-gray-500">
+                  ({item.category})
+                </span>
+                <span className="text-[11px] 3sm:text-[13px] 2sm:text-[16px] leading-tight 2sm:leading-none ">
+                  {item.title}
+                </span>
               </Link>
-              <span className="text-gray-500 text-xs w-1/4 flex justify-end">
+              <span className="text-gray-500 text-[9px] 2sm:text-xs w-1/4 flex justify-end">
                 {/*  {formattedDate(item.postAt.toString())} */}
                 {item.postAt.slice(0, 10)}
               </span>

@@ -13,6 +13,7 @@ export default function Search({ isDark }) {
   const [keyword, setKeyword] = useState("");
   const [contentResult, setContentResult] = useState([]);
   const [Wwidth, setWwidth] = useState(false);
+  const [Wheight, setWheight] = useState(false);
 
   const [titleResult, setTitleResult] = useState([]);
   const [resultState, setResultState] = useState(false);
@@ -76,6 +77,12 @@ export default function Search({ isDark }) {
       }
       if (window.innerWidth >= 640) {
         setWwidth(false);
+      }
+      if (window.innerHeight >= 880) {
+        setWheight(false);
+      }
+      if (window.innerHeight <= 879) {
+        setWheight(true);
       }
     };
     // resize 이벤트 리스너 등록
@@ -223,6 +230,7 @@ export default function Search({ isDark }) {
       <AnimatePresence>
         {resultState ? (
           <div className="">
+            {/* 오버레이 */}
             <motion.div
               variants={overlayVars}
               initial="initial"
@@ -234,16 +242,21 @@ export default function Search({ isDark }) {
               onClick={overlayClick}
               transition={{ type: "tween" }}
             ></motion.div>
+
             <motion.div
+              /* 검색 결과창 */
               variants={resultVars}
               initial="initial"
               animate="visible"
               exit="exit"
               transition={{ duration: 0.7, type: "spring", bounce: 0.5 }}
-              className={`absolute flex left-[-400px] sm:left-[-550px] md:left-[-650px] lg:left-[-800px] xl:left-[-700px] 2xl:left-[-800px] 3xl:left-[-1000px]  4xl:left-[-1200px] w-[450px] sm:w-[600px]  md:w-[700px] top-[70px] space-y-3 flex-col p-3 rounded-md shadow-md h-[780px] max-w-3xl max-h-[780px]  z-[60] ${
+              className={`${
+                Wheight ? "SearchHeightCalc" : "h-[780px]"
+              } SearchScroll absolute flex left-[-254px] 4sm:left-[-275px]  2sm:left-[-430px] sm:left-[-550px] md:left-[-650px] lg:left-[-800px] xl:left-[-700px] 2xl:left-[-800px] 3xl:left-[-1000px]  4xl:left-[-1200px] w-[300px] 2sm:w-[450px] sm:w-[600px]  md:w-[700px] top-[60px] space-y-3 flex-col p-3 rounded-md shadow-md  max-w-3xl z-[60] ${
                 isDark === true ? "bg-gray-600 text-white" : "bg-white"
               }`}
             >
+              {/* backBtn ,  검색결과 */}
               <div className="flex items-center">
                 <div className="w-1/6">
                   <button className="" onClick={ResultBackBtn}>
@@ -263,17 +276,18 @@ export default function Search({ isDark }) {
                     </svg>
                   </button>
                 </div>
-
-                <h4 className="text-center text-3xl w-4/6 ">
+                <h4 className="bold text-center text-[20px] 2sm:text-3xl w-4/6 ">
                   {keyword} 검색 결과
                 </h4>
                 <div className="w-1/6"></div>
               </div>
               <div>
+                {/* 제목 검색 div */}
                 <h3 className="mb-3 text-xl font-bold">
                   제목 으로 검색 ({titleResult.length}) 개
                 </h3>
-                <div className="space-y-3 h-[275px]">
+                {/* 제목으로 검색 결과 출력 */}
+                <div className="space-y-3 h-[300px] 2sm:h-[275px]">
                   {titleResult
                     .slice(
                       offset * titleNowIndex,
@@ -289,11 +303,11 @@ export default function Search({ isDark }) {
                         }`}
                       >
                         <button
-                          className=" flex w-3/4 space-x-5"
+                          className="flex items-center w-3/4 space-x-1 sm:space-x-5"
                           onClick={() => pageGo(item)}
                         >
                           <span
-                            className={`text-xs  ${
+                            className={`text-[10px] sm:text-[12px]  ${
                               isDark === true
                                 ? "text-gray-100 group-hover:text-gray-600"
                                 : "text-gray-500"
@@ -301,7 +315,9 @@ export default function Search({ isDark }) {
                           >
                             ({item.category})
                           </span>
-                          <span>{item.title}</span>
+                          <span className="text-[12px] sm:text-[16px]">
+                            {item.title}
+                          </span>
                         </button>
                         <span
                           className={` text-xs w-1/4 flex justify-end ${
@@ -310,12 +326,13 @@ export default function Search({ isDark }) {
                               : "text-gray-500"
                           }`}
                         >
-                          {formattedDate(item.postAt.toString())}
+                          {item.postAt.slice(2, 10)}
                         </span>
                       </div>
                     ))}
                 </div>
-                <div className="space-x-2 w-full flex justify-center h-[25px]">
+                {/* 제목으로 검색한 결과의 페이지 */}
+                <div className="space-x-2 w-full flex justify-center mt-3 sm:mt-0 h-[25px] ">
                   {titlePage.length !== 0 ? (
                     titlePage.length > pageOffset ? (
                       <>
@@ -407,10 +424,12 @@ export default function Search({ isDark }) {
                 </div>
               </div>
               <div>
+                {/* 내용 검색 div */}
                 <h3 className="mb-3 text-xl font-bold">
                   내용 으로 검색 ({contentResult.length}) 개
                 </h3>
-                <div className="space-y-3 h-[275px]">
+                {/* 내용으로 검색 결과 출력 */}
+                <div className="space-y-3 h-[300px]  2sm:h-[275px]">
                   {contentResult
                     .slice(
                       offset * contentNowIndex,
@@ -426,11 +445,11 @@ export default function Search({ isDark }) {
                         }`}
                       >
                         <button
-                          className=" flex w-3/4 space-x-5"
+                          className=" flex items-center w-3/4 space-x-1 sm:space-x-5"
                           onClick={() => pageGo(item)}
                         >
                           <span
-                            className={`text-xs  ${
+                            className={`text-[10px] sm:text-[12px]  ${
                               isDark === true
                                 ? "text-gray-100 group-hover:text-gray-600"
                                 : "text-gray-500"
@@ -438,7 +457,9 @@ export default function Search({ isDark }) {
                           >
                             ({item.category})
                           </span>
-                          <span>{item.title}</span>
+                          <span className="text-[12px] sm:text-[16px]">
+                            {item.title}
+                          </span>
                         </button>
                         <span
                           className={` text-xs w-1/4 flex justify-end ${
@@ -447,15 +468,17 @@ export default function Search({ isDark }) {
                               : "text-gray-500"
                           }`}
                         >
-                          {formattedDate(item.postAt.toString())}
+                          {item.postAt.slice(2, 10)}
                         </span>
                       </div>
                     ))}
                 </div>
-                <div className="space-x-2 w-full flex justify-center h-[25px] ">
+                {/* 내용으로 검색한 결과의 페이지 */}
+                <div className="space-x-2 w-full flex justify-center mt-3 sm:mt-0 h-[25px] ">
                   {contentPage.length !== 0 ? (
                     contentPage.length > pageOffset ? (
                       <>
+                        {/* 5페이지 이상일 경우 */}
                         <button
                           onClick={CpageArrMinus}
                           className={`${
@@ -524,6 +547,7 @@ export default function Search({ isDark }) {
                         </button>
                       </>
                     ) : (
+                      /* 5페이지 미만일 경우 */
                       contentPage.map((item) => (
                         <button
                           key={item}

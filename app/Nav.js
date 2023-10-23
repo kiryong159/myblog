@@ -33,7 +33,7 @@ export default async function Nav({ child }) {
       }`}
     >
       <div
-        className={`fixed z-10 top-0 flex justify-between items-center shadow-md rounded-md  h-[70px] w-[99.3%] xl:w-[81.5%]  p-4 px-10 left-0 xl:left-[9%] ${
+        className={`fixed z-10 top-0 flex justify-between items-center shadow-md rounded-md rounded-t-none  h-[70px] w-[100%] xl:w-[81.5%]  p-4  3sm:px-10 left-0 xl:left-[9%] ${
           isDark === true ? "bg-gray-500 text-gray-100" : "bg-white"
         }`}
       >
@@ -43,11 +43,11 @@ export default async function Nav({ child }) {
           </Link>
           <div className="flex justify-center items-center">
             {/* space x-3을 피하기위한 div */}
-            <Menu isDark={isDark} />
+            <Menu isDark={isDark} session={session} admin={admin} />
           </div>
 
           {admin ? (
-            <Link href="/write" className="flex items-center">
+            <Link href="/write" className="hidden 2sm:flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -65,7 +65,11 @@ export default async function Nav({ child }) {
               <span>글쓰기</span>
             </Link>
           ) : null}
-          {session ? <LogOutBtn /> : <LogInBtn />}
+          {session ? (
+            <LogOutBtn defaultView={false} />
+          ) : (
+            <LogInBtn defaultView={false} />
+          )}
           <ThemeBtn isDark={isDark} />
         </div>
         <Search isDark={isDark} />

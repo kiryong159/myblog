@@ -3,8 +3,8 @@ import Link from "next/link";
 export default function JsCard() {
   return (
     <>
-      <h1 className="text-2xl">바닐라 JS 기초</h1>
-      <ul className="pl-4 leading-relaxed">
+      <h1 className="text-[15px]  2sm:text-2xl">바닐라 JS 기초</h1>
+      <ul className="pl-4 leading-relaxed text-[12px] 2sm:text-[16px]">
         <li>바닐라 JS로 크롬 앱 만들기</li>
         <li>
           바닐라 JS 2주 완성반 (
