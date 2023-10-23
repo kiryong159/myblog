@@ -4,7 +4,7 @@ import ToDay from "./Today";
 import Watch from "./Watch";
 import Weather from "./Weather";
 
-// 메인 홈 화면
+// 메인 홈 화면  테스트
 
 export default function Home() {
   let cookie = cookies().get("isDark");
