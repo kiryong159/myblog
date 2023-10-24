@@ -75,11 +75,11 @@ export default function ProfileDetail({ isDark }) {
       {/* 카드1 */}
       <div
         ref={ref}
-        className={`GradientBox flex w-full items-center h-[400px] sm:h-[350px] p-1 2sm:p-5 sm:px-8 mt-12  rounded-md transition-all duration-[1.0s] ${
+        className={`GradientBox flex flex-col 2sm:flex-row w-full items-center 2sm:h-[400px] lg:h-[350px] p-4 2sm:p-4 sm:px-8 mt-16 rounded-md  transition-all duration-[1s] ${
           isInView ? "opacity-100" : "opacity-0"
         }`}
       >
-        <div className="flex flex-col items-center w-1/2 p-3 space-y-2 max-h-full relative">
+        <div className="flex flex-col items-center w-full 2sm:w-1/2 2sm:p-3 space-y-2 max-h-full relative">
           <LeftCard
             imgCount="5"
             imgsrc1="https://myblog6779.s3.ap-northeast-2.amazonaws.com/KakaoClone-1.jpg"
@@ -89,18 +89,18 @@ export default function ProfileDetail({ isDark }) {
             imgsrc5="https://myblog6779.s3.ap-northeast-2.amazonaws.com/KakaoClone-5.jpg"
           />
         </div>
-        <div className="flex flex-col  w-1/2 ml-2 space-y-2 max-h-full ">
+        <div className="flex flex-col  w-[80%] 2sm:w-1/2 2sm:ml-2 space-y-2 max-h-full ">
           <HtmlCssCard />
         </div>
       </div>
       {/* 카드2 */}
       <div
         ref={ref2}
-        className={`GradientBox flex w-full items-center h-[400px] sm:h-[350px] p-1 2sm:p-5 sm:px-8 mt-16 rounded-md  transition-all duration-[1s] ${
+        className={`GradientBox flex flex-col 2sm:flex-row w-full items-center 2sm:h-[400px] lg:h-[350px] p-4 2sm:p-4 sm:px-8 mt-16 rounded-md  transition-all duration-[1s] ${
           isInView2 ? "opacity-100 translate-y-0 " : "opacity-0 translate-y-8 "
         }`}
       >
-        <div className="flex flex-col items-center w-1/2 p-3 space-y-2 max-h-full relative">
+        <div className="flex flex-col items-center w-full 2sm:w-1/2 2sm:p-3 space-y-2 max-h-full relative">
           <LeftCard
             imgCount="3"
             imgsrc1="https://myblog6779.s3.ap-northeast-2.amazonaws.com/JS-1.jpg"
@@ -108,18 +108,18 @@ export default function ProfileDetail({ isDark }) {
             imgsrc3="https://myblog6779.s3.ap-northeast-2.amazonaws.com/JS-3.jpg"
           />
         </div>
-        <div className="flex flex-col  w-1/2 ml-2 space-y-2 max-h-full ">
+        <div className="flex flex-col  w-[80%] 2sm:w-1/2 2sm:ml-2 space-y-2 max-h-full">
           <JsCard />
         </div>
       </div>
       {/* 카드 3 */}
       <div
         ref={ref3}
-        className={`GradientBox flex w-full items-center h-[400px] md:h-[400px] lg:h-[350px] p-1 2sm:p-4 sm:px-8 mt-16 rounded-md  transition-all duration-[1s] ${
+        className={`GradientBox flex flex-col 2sm:flex-row w-full items-center 2sm:h-[400px] lg:h-[350px] p-4 2sm:p-4 sm:px-8 mt-16 rounded-md  transition-all duration-[1s] ${
           isInView3 ? "opacity-100 translate-y-0 " : "opacity-0 translate-y-8 "
         }`}
       >
-        <div className="flex flex-col items-center w-1/2 p-3 space-y-2 max-h-full relative">
+        <div className="flex flex-col items-center w-full 2sm:w-1/2 2sm:p-3 space-y-2 max-h-full relative">
           <LeftCard
             imgCount="8"
             imgsrc1="https://myblog6779.s3.ap-northeast-2.amazonaws.com/React-1.jpg"
@@ -132,18 +132,19 @@ export default function ProfileDetail({ isDark }) {
             imgsrc8="https://myblog6779.s3.ap-northeast-2.amazonaws.com/React-8.jpg"
           />
         </div>
-        <div className="flex flex-col  w-1/2 ml-2 space-y-2 max-h-full ">
+        <div className="flex flex-col  w-[80%] 2sm:w-1/2 2sm:ml-2 space-y-2 max-h-full ">
           <ReactCard />
         </div>
       </div>
+
       {/* 카드 4 */}
       <div
         ref={ref4}
-        className={`GradientBox flex w-full items-center h-[350px] p-1 2sm:p-5 px-8 mt-16 rounded-md transition-all duration-[1s] ${
+        className={`GradientBox flex flex-col 2sm:flex-row w-full items-center 2sm:h-[400px] lg:h-[350px] p-4 2sm:p-4 sm:px-8 mt-16 rounded-md  transition-all duration-[1s] ${
           isInView4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
-        <div className="flex flex-col items-center w-1/2 p-3 space-y-2 max-h-full relative">
+        <div className="flex flex-col items-center w-full 2sm:w-1/2 2sm:p-3 space-y-2 max-h-full relative">
           <LeftCard
             imgCount="4"
             imgsrc1="https://myblog6779.s3.ap-northeast-2.amazonaws.com/Next-1.jpg"
@@ -152,7 +153,7 @@ export default function ProfileDetail({ isDark }) {
             imgsrc4="https://myblog6779.s3.ap-northeast-2.amazonaws.com/Next-4.jpg"
           />
         </div>
-        <div className="flex flex-col  w-1/2 p-2 space-y-2 max-h-full ">
+        <div className="flex flex-col  w-[80%] 2sm:w-1/2 2sm:ml-2 space-y-2 max-h-full ">
           <NextCard />
         </div>
       </div>
