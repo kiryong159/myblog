@@ -9,6 +9,7 @@ import PostDeleteBtn from "./Delete";
 import PostEdit from "./Edit";
 import { cookies } from "next/headers";
 import ViewContents from "./ViewContents";
+import Like from "./like";
 
 // 글 내용 보는 페이지
 export default async function PostDetail(prop) {
@@ -79,6 +80,9 @@ export default async function PostDetail(prop) {
         <h1 className="p-3 text-center font-bold text-2xl">{result.title}</h1>
         <div className="p-3 flex">
           <ViewContents content={result.content} />
+        </div>
+        <div className="">
+          <Like postId={postId} likeCount={result.like} />
         </div>
         <Comment postId={postId} isDark={isDark} />
       </div>

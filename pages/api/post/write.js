@@ -11,6 +11,7 @@ export default async function Writehandler(req, res) {
       content: req.body.content,
       postAt: req.body.postAt,
       awsFileName: req.body.awsFileName,
+      like: 0,
     });
   } else {
     //method가 post가 아닐시
