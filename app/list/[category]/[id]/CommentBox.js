@@ -26,13 +26,15 @@ export default function CommentBox({ item, author, isDark }) {
 
   return (
     <div
-      className={`w-full   relative shadow-md p-1 px-4 rounded-md flex justify-between items-center ${
+      className={`w-full    relative shadow-md p-1 px-4 rounded-md flex justify-between items-center ${
         isDark ? "bg-gray-300 text-black" : "bg-white"
       }`}
     >
-      <div className="flex space-x-5 text-sm items-center w-5/6">
+      <div className="flex space-x-5 text-sm items-center w-5/6  ">
         <span className="w-1/4 font-bold ">{item.author}</span>
-        <span className="flex w-3/4 whitespace-pre-line">{item.comment}</span>
+        <span className="w-3/4 break-words 5sm:pr-5 4sm:pr-4 3sm:pr-3 2sm:pr-0">
+          {item.comment}
+        </span>
       </div>
       <div className="flex flex-col w-1/6 justify-center items-center space-y-2">
         {bigWidth ? (
