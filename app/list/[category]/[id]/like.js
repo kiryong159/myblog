@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 // 좋아요 부분
-export default function Like({ postId, likeCount }) {
+export default function Like({ isDark, postId, likeCount }) {
   const [like, setLike] = useState(false);
   const router = useRouter();
   const likeClick = () => {
@@ -41,7 +41,11 @@ export default function Like({ postId, likeCount }) {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 items-center p-3  bg-purple-50 h-12 w-28 mx-auto rounded-md shadow-md mb-4">
+    <div
+      className={`grid grid-cols-2 items-center p-3   h-12 w-28 mx-auto rounded-md shadow-md mb-4 ${
+        isDark ? "bg-gray-300 text-black" : "bg-purple-50"
+      }`}
+    >
       <div
         onClick={likeClick}
         className="flex justify-center items-center hover:cursor-pointer "

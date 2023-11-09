@@ -82,7 +82,7 @@ export default async function PostDetail(prop) {
           <ViewContents content={result.content} />
         </div>
         <div className="">
-          <Like postId={postId} likeCount={result.like} />
+          <Like isDark={isDark} postId={postId} likeCount={result.like} />
         </div>
         <Comment postId={postId} isDark={isDark} />
       </div>
