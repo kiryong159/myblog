@@ -23,7 +23,7 @@ export default async function VisitorCounter({ isDark, visited }) {
     );
   };
 
-  cron.schedule("0 0 * * *", resetToday);
+  cron.schedule("22 12 * * *", resetToday);
   return (
     <>
       <VisitorCounterClient visited={visited} />
