@@ -9,12 +9,18 @@ export default function VisitorCounterClient({ visited }) {
   useEffect(() => {
     if (visited) {
       return router.refresh();
-    } else if (!visited && visited !== undefined) {
-      async function fetchVisited() {
+    } else if (!visited) {
+      async function fetchToday() {
         await fetch("/api/visit", { method: "POST" }).then((r) => r.json());
       }
+      async function fetchTotal() {
+        await fetch("/api/totalVisit", { method: "POST" }).then((r) =>
+          r.json()
+        );
+      }
       document.cookie = "visited=true; path=/; max-age=86400";
-      fetchVisited();
+      fetchToday();
+      fetchTotal();
       router.refresh();
     }
   }, []);

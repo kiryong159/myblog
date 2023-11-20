@@ -23,8 +23,8 @@ export default async function Nav({ child }) {
   let cookie = cookies().get("isDark");
   let isDark =
     cookie !== undefined ? (cookie.value === "true" ? true : false) : "no";
-  let visitedCookie = cookies().get("visited");
-  let visited = visitedCookie !== undefined ? true : false;
+  let visited = cookies().has("visited");
+  /*   let visited = visitedCookie !== undefined ? true : false; */
 
   return (
     <div
