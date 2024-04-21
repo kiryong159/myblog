@@ -8,7 +8,6 @@ import Search from "./search";
 import ThemeBtn from "./ThemeBtn";
 import { cookies } from "next/headers";
 import HomeBtn from "./HomeBtn";
-import Info from "./Info";
 import Menu from "./Menu";
 import VisitorCounter from "./VisitorCounter";
 
@@ -81,8 +80,6 @@ export default async function Nav({ child }) {
           }`}
         >
           <div className="fixed md:w-1/6 xl:w-1/5">
-            <Info isDark={isDark} />
-            <div className="border-b border-gray-400  border-solid m-1" />
             <Category isDark={isDark} />
             <div className="border-b border-gray-400  border-solid m-1" />
             <VisitorCounter isDark={isDark} visited={visited} />

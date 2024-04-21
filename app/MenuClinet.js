@@ -21,7 +21,6 @@ export default function MenuClient({
   const [onMenu, setOnMenu] = useState(false);
   const router = useRouter();
   const [Wheight, setWheight] = useState(false);
-  const topMenuUrl = ["profile", "create"];
 
   const menuVar = {
     start: { x: -300, scale: 0.8 },
@@ -96,19 +95,6 @@ export default function MenuClient({
               }`}
             >
               <div className="grid grid-cols-1 gap-1 p-1 ">
-                {/* 상단 메뉴 */}
-                {topMenuUrl.map((item) => {
-                  return (
-                    <button
-                      key={item}
-                      className="px-1 py-1 whitespace-nowrap text-base rounded-md font-bold hover:bg-gray-200 hover:text-purple-500 transition-all"
-                      onClick={() => navClick(`/${item}`)}
-                    >
-                      {item === "profile" ? "프로필" : "제작 도움"}
-                    </button>
-                  );
-                })}
-                <div className="border-b border-gray-400  border-solid m-1" />
                 {/* 카테고리 메뉴  */}
                 {postCount.map((item, index) => (
                   <button
